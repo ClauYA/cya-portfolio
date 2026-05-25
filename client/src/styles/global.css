@@ -1,0 +1,94 @@
+@import './tokens.css';
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { 
+    scroll-behavior: smooth; 
+    -webkit-font-smoothing: antialiased; 
+    text-rendering: optimizeLegibility; 
+  }
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.65;
+    overflow-x: hidden;
+    transition: background 0.4s ease, color 0.4s ease;
+    background-image: radial-gradient(var(--dot) 1.4px, transparent 1.4px);
+    background-size: 28px 28px;
+  }
+
+  ::selection { background: var(--accent-g); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; max-width: 100%; }
+  input, textarea, select { font-family: 'DM Sans', system-ui, sans-serif; }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border-m); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+  /* ── Animations ── */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(24px); }
+  to   { opacity:1; transform:none; }
+}
+@keyframes float {
+  0%,100% { transform:translateY(0); }
+  50%      { transform:translateY(-18px); }
+}
+@keyframes pulse-dot {
+  0%   { box-shadow:0 0 0 0 rgba(34,197,94,.45); }
+  60%  { box-shadow:0 0 0 8px rgba(34,197,94,0); }
+  100% { box-shadow:0 0 0 0 rgba(34,197,94,0); }
+}
+@keyframes ring-appear {
+  from { opacity:0; transform:translateY(-50%) scale(0.8); }
+  to   { opacity:0.45; transform:translateY(-50%) scale(1); }
+}
+@keyframes carouselIn {
+  from { opacity:0; transform:scale(1.06); }
+  to   { opacity:1; transform:scale(1); }
+}
+
+/* ── Utility classes ── */
+.anim-fadeup { animation: fadeUp 0.7s cubic-bezier(0,0,0.2,1) both; }
+.d100 { animation-delay:.1s; }
+.d200 { animation-delay:.2s; }
+.d300 { animation-delay:.3s; }
+.d400 { animation-delay:.4s; }
+
+/* ── Reading progress ── */
+.reading-progress-bar {
+  position: fixed; top: var(--nav-h); left: 0; right: 0;
+  height: 3px; z-index: 90; background: var(--border);
+}
+.reading-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-w));
+  border-radius: 0 2px 2px 0;
+  transition: width .08s linear;
+}
+
+/* ── Skill bars ── */
+.skill-bar-track {
+  background: var(--bg-inset);
+  border-radius: 3px; height: 3px; overflow: hidden;
+}
+.skill-bar-fill {
+  height: 100%; border-radius: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-w));
+  width: 0%;
+  transition: width 1.4s cubic-bezier(0,0,0.2,1);
+}
+.skill-bar-fill.animated { width: var(--target-w, 0%); }
+
+/* ── Nav responsive ── */
+@media(max-width:860px){
+  .nav-desktop-links, .nav-cta-btn { display:none !important; }
+  .nav-burger { display:flex !important; }
+}
+
+@media(max-width:900px){
+  .hero-card-col { width: 100% !important; }
+}
