@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from 'react';
 import { AppCtx }          from '../context/AppContext';
-import { TIMELINE, TOOLS } from '../data/about';
+import { TOOLS } from '../data/about';
 
 import Eyebrow       from '../components/ui/Eyebrow';
 import Btn           from '../components/ui/Btn';

@@ -18,6 +18,14 @@ export default function ContactPage() {
     company: '', budget: '', message: '',
   });
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  useEffect(() => {
+    const fn = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', fn);
+    return () => window.removeEventListener('resize', fn);
+  }, []);
+
+
   const handleChange = (field) => (e) => {
     setFormData(prev => ({ ...prev, [field]: e.target.value }));
   };
@@ -69,12 +77,21 @@ export default function ContactPage() {
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1.15fr)', gap: 'clamp(40px,7vw,80px)', alignItems: 'start' }}>
-
+          <div style={{ 
+            display: 'flex',
+            flexDirection: isMobile ? 'column' : 'row',
+            gap: 'clamp(40px,7vw,80px)', 
+            alignItems: 'start' 
+          }}>
             {/* Contact links */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              {[
-                ['✉️', 'Email',            '',                 'mailto:info@yaczoe.com'],
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 12,
+              width: isMobile ? '100%' : undefined,
+              order:1 
+              }}>
+              {[['✉️', 'Email',            '',                 'mailto:info@yaczoe.com'],
                 ['💼', 'LinkedIn',         '',      'https://www.linkedin.com/in/claudia-ya/'],
                 ['🎨', 'Dribbble',         '',                'https://dribbble.com/cya'],
                 ['📅', 'Book a 30-min call','Calendly · Free discovery call', 'https://calendly.com/cyabittner/30min'],
@@ -108,7 +125,7 @@ export default function ContactPage() {
             </div>
 
             {/* Form */}
-            <Reveal delay={100} direction="right">
+            <Reveal delay={100} direction={{width: isMobile ? '100%' : undefined, flex: isMobile ? undefined: 1 ,order:2}}>
               <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 22, padding: 'clamp(28px,4vw,44px)', boxShadow: 'var(--sh-lg)' }}>
                 <h3 style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: 4 }}>Send a message</h3>
                 <p style={{ fontSize: '0.82rem', color: 'var(--ink-3)', marginBottom: 28 }}>Tell me about your project and I'll get back to you shortly.</p>
