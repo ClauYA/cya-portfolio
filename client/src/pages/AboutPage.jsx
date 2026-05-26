@@ -1,67 +1,52 @@
-import { useContext } from 'react';
-import { AppCtx }   from '../context/AppContext';
+import { useContext, useState, useEffect } from 'react';
+import { AppCtx }          from '../context/AppContext';
 import { TIMELINE, TOOLS } from '../data/about';
 
-import Eyebrow   from '../components/ui/Eyebrow';
-import Btn       from '../components/ui/Btn';
-import Reveal    from '../components/ui/Reveal';
-import Container from '../components/ui/Container';
-import AvailDot  from '../components/ui/AvailDot';
-import ResumeBtn from '../components/ui/ResumeBtn';
-import Footer    from '../components/Footer';
+import Eyebrow       from '../components/ui/Eyebrow';
+import Btn           from '../components/ui/Btn';
+import Reveal        from '../components/ui/Reveal';
+import Container     from '../components/ui/Container';
+import AvailDot      from '../components/ui/AvailDot';
+import ResumeBtn     from '../components/ui/ResumeBtn';
+import Footer        from '../components/Footer';
 import PhotoCarousel from '../components/blocks/PhotoCarousel';
-
-/* ═══════════════════════════════════════════════════════════════
-   ██  ABOUT PAGE  — accessed via navbar "About" link
-═══════════════════════════════════════════════════════════════ */
 
 export default function AboutPage() {
   const { setPage } = useContext(AppCtx);
+
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-    useEffect(() => {
+  useEffect(() => {
     const fn = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener('resize', fn);
     return () => window.removeEventListener('resize', fn);
   }, []);
-  
+
   return (
     <div style={{ paddingTop: 68 }}>
       <section style={{ padding: 'clamp(64px,7vw,110px) 0 clamp(48px,6vw,80px)' }}>
         <Container>
-        <div style={{ 
-          display: 'flex',
-          flexDirection: isMobile ? 'column' : 'row',
-          gap: 'clamp(40px,7vw,80px)', 
-          alignItems: 'start' 
-        }}>
+          <div style={{
+            display: 'flex',
+            flexDirection: isMobile ? 'column' : 'row',
+            gap: 'clamp(40px,7vw,80px)',
+            alignItems: 'start',
+          }}>
 
-            {/* ── Content column ── */}
-            <div style={{ flex: 1, minWidth: 0, order: isMobile ? 1:1 }}>
+            {/* ── Columna izquierda — texto ── */}
+            <div style={{ flex: 1, minWidth: 0, order: 1, display: 'flex', flexDirection: 'column', gap: 64 }}>
 
-              {/* Intro + Resume */}
+              {/* Intro */}
               <div>
                 <div className="anim-fadeup"><Eyebrow>My story</Eyebrow></div>
-                <h1 className="anim-fadeup d100" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(2.8rem,6vw,4.5rem)', fontWeight: 400, lineHeight: 1.05, letterSpacing: '-.03em', marginTop: 16 }}>
+                <h1 className="anim-fadeup d100" style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2.8rem,6vw,4.5rem)', fontWeight: 400, lineHeight: 1.05, letterSpacing: '-.03em', marginTop: 16 }}>
                   Designing with<br /><em style={{ color: 'var(--accent)' }}>purpose.</em>
                 </h1>
-                <p className="anim-fadeup d200" style={{
-                  fontSize: '1.05rem', color: 'var(--ink-2)', marginTop: 20,
-                  lineHeight: 1.72, maxWidth: 600
-                }}>
-                  I'm a Designer and Frontend Developer with a full-stack foundation —
-                  I design with the backend in mind, understanding what is buildable, scalable,
-                  and consistent across platforms.
+                <p className="anim-fadeup d200" style={{ fontSize: '1.05rem', color: 'var(--ink-2)', marginTop: 20, lineHeight: 1.72, maxWidth: 600 }}>
+                  I'm a Designer and Frontend Developer with a full-stack foundation — I design with the backend in mind, understanding what is buildable, scalable, and consistent across platforms.
                 </p>
-                <p className="anim-fadeup d300" style={{
-                  fontSize: '1rem', color: 'var(--ink-2)', marginTop: 16, lineHeight: 1.72
-                }}>
-                  I translate user research and business requirements into reusable components,
-                  clear user stories, and structured information architecture. Experienced across
-                  product, design, and engineering teams in Agile environments — representing
-                  both design and technical perspectives to cross-functional stakeholders.
+                <p className="anim-fadeup d300" style={{ fontSize: '1rem', color: 'var(--ink-2)', marginTop: 16, lineHeight: 1.72 }}>
+                  I translate user research and business requirements into reusable components, clear user stories, and structured information architecture. Experienced across product, design, and engineering teams in Agile environments.
                 </p>
-
-                {/* CTA buttons including Resume */}
                 <div className="anim-fadeup d400" style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 28, alignItems: 'center' }}>
                   <Btn variant="solid" onClick={() => setPage('contact')}>Work with me →</Btn>
                   <ResumeBtn size="md" />
@@ -71,11 +56,11 @@ export default function AboutPage() {
               {/* Timeline */}
               <Reveal>
                 <Eyebrow>Journey</Eyebrow>
-                <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(1.6rem,3vw,2.4rem)', fontWeight: 400, marginTop: 12, marginBottom: 28, letterSpacing: '-.02em' }}>How I got here.</h2>
+                <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.6rem,3vw,2.4rem)', fontWeight: 400, marginTop: 12, marginBottom: 28, letterSpacing: '-.02em' }}>How I got here.</h2>
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                   {TIMELINE.map((item, i) => (
                     <div key={i} style={{ display: 'grid', gridTemplateColumns: '80px 12px 1fr', gap: '0 20px', padding: '20px 0' }}>
-                      <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1rem', color: 'var(--accent)', textAlign: 'right', paddingTop: 2 }}>{item.year}</div>
+                      <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1rem', color: 'var(--accent)', textAlign: 'right', paddingTop: 2 }}>{item.year}</div>
                       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         {i > 0 && <div style={{ width: 1, background: 'var(--border)', flex: '0 0 20px' }} />}
                         <div style={{ width: 10, height: 10, borderRadius: '50%', background: 'var(--accent)', flexShrink: 0, boxShadow: '0 0 0 3px var(--accent-s)', margin: '4px 0' }} />
@@ -94,28 +79,18 @@ export default function AboutPage() {
               {/* Philosophy */}
               <Reveal>
                 <Eyebrow>Design philosophy</Eyebrow>
-                <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(1.6rem,3vw,2.4rem)', fontWeight: 400, marginTop: 12, marginBottom: 24, letterSpacing: '-.02em' }}>How I think.</h2>
+                <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.6rem,3vw,2.4rem)', fontWeight: 400, marginTop: 12, marginBottom: 24, letterSpacing: '-.02em' }}>How I think.</h2>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(200px,1fr))', gap: 14 }}>
-                  {[[
-                      '01',
-                      'Research Drives Every Decision',
-                      'I start with real users, real pain points, and real context. Every design choice is grounded in evidence — not assumptions or personal preference.'
-                    ],
-                    [
-                      '02',
-                      'Design Systems Think at Scale',
-                      'Good design is not just one screen — it is a system. I build reusable components, consistent patterns, and shared logic that works across every surface and scales with the product.'
-                    ],
-                    [
-                      '03',
-                      'Buildable by Design',
-                      'I design with the backend in mind. Understanding what is technically feasible, scalable, and consistent across platforms makes the handoff stronger and the final product better.'
-                    ],].map(([n, t, d]) => (
+                  {[
+                    ['01', 'Research Drives Every Decision', 'I start with real users, real pain points, and real context. Every design choice is grounded in evidence — not assumptions.'],
+                    ['02', 'Design Systems Think at Scale',  'Good design is not just one screen — it is a system. I build reusable components and consistent patterns that scale with the product.'],
+                    ['03', 'Buildable by Design',            'I design with the backend in mind. Understanding what is technically feasible makes the handoff stronger and the final product better.'],
+                  ].map(([n, t, d]) => (
                     <div key={n}
                       style={{ padding: 24, borderRadius: 20, background: 'var(--bg-card)', border: '1px solid var(--border)', transition: 'all .2s' }}
                       onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--sage)'; e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = 'var(--sh-md)'; }}
                       onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none'; }}>
-                      <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '2.5rem', color: 'var(--border-s)', lineHeight: 1, marginBottom: 14 }}>{n}</div>
+                      <div style={{ fontFamily: 'var(--font-serif)', fontSize: '2.5rem', color: 'var(--border-s)', lineHeight: 1, marginBottom: 14 }}>{n}</div>
                       <div style={{ fontSize: '0.95rem', fontWeight: 600, marginBottom: 8 }}>{t}</div>
                       <p style={{ fontSize: '0.82rem', color: 'var(--ink-3)', lineHeight: 1.55 }}>{d}</p>
                     </div>
@@ -126,7 +101,7 @@ export default function AboutPage() {
               {/* Tools */}
               <Reveal>
                 <Eyebrow sage>Toolkit</Eyebrow>
-                <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(1.6rem,3vw,2.4rem)', fontWeight: 400, marginTop: 12, marginBottom: 24, letterSpacing: '-.02em' }}>Tools &amp; workflow.</h2>
+                <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.6rem,3vw,2.4rem)', fontWeight: 400, marginTop: 12, marginBottom: 24, letterSpacing: '-.02em' }}>Tools &amp; workflow.</h2>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(110px,1fr))', gap: 10 }}>
                   {TOOLS.map(t => (
                     <div key={t.name}
@@ -144,30 +119,29 @@ export default function AboutPage() {
               <div style={{ paddingBottom: 60 }} />
             </div>
 
-            {/* ── Sticky portrait sidebar ── */}
-            <div style={{ 
-             width: isMobile ? '100%' : 360, 
-             flexShrink: 0,
-            order: isMobile ? 2 : 2,
-            position: isMobile ? 'relative' : 'sticky',
-            top: isMobile ? 'auto' : 88
+            {/* ── Carrusel — debajo en móvil, sticky en desktop ── */}
+            <div style={{
+              width: isMobile ? '100%' : 360,
+              flexShrink: 0,
+              order: isMobile ? 2 : 2,
+              position: isMobile ? 'relative' : 'sticky',
+              top: isMobile ? 'auto' : 88,
             }}>
               <Reveal direction="right">
-               {/* ── PHOTO CAROUSEL ── */}
-                <PhotoCarousel /> 
-              {/* Stats below collage */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 20 }}>
-                {[['3+','Years Experience'],['5+','Projects Delivered'],['100%','Client Satisfaction']].map(([n, l]) => (
-                  <div key={l} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 14px', borderRadius: 10, background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
-                    <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.4rem', color: 'var(--accent)' }}>{n}</div>
-                    <div style={{ fontSize: '0.72rem', color: 'var(--ink-3)', fontWeight: 500 }}>{l}</div>
-                  </div>
-                ))}
-                <AvailDot text="Available for new work" />
-                <ResumeBtn size="md" style={{ justifyContent: 'center', width: '100%', marginTop: 6 }} />
-              </div>
+                <PhotoCarousel />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 20 }}>
+                  {[['3+','Years Experience'],['5+','Projects Delivered'],['100%','Client Satisfaction']].map(([n, l]) => (
+                    <div key={l} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 14px', borderRadius: 10, background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
+                      <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', color: 'var(--accent)' }}>{n}</div>
+                      <div style={{ fontSize: '0.72rem', color: 'var(--ink-3)', fontWeight: 500 }}>{l}</div>
+                    </div>
+                  ))}
+                  <AvailDot text="Available for new work" />
+                  <ResumeBtn size="md" style={{ justifyContent: 'center', width: '100%', marginTop: 6 }} />
+                </div>
               </Reveal>
             </div>
+
           </div>
         </Container>
       </section>
