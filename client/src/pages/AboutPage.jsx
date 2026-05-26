@@ -52,7 +52,7 @@ export default function AboutPage() {
                   <ResumeBtn size="md" />
                 </div>
               </div>
-{/* ── Carrusel — debajo en móvil, sticky en desktop ── */}
+            {/* ── Carrusel — debajo en móvil, sticky en desktop ── */}
             <div style={{
               width: isMobile ? '100%' : 360,
               flexShrink: 0,
@@ -74,30 +74,7 @@ export default function AboutPage() {
                 </div>
               </Reveal>
             </div>
-              {/* Timeline */}
-              <Reveal>
-                <Eyebrow>Journey</Eyebrow>
-                <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.6rem,3vw,2.4rem)', fontWeight: 400, marginTop: 12, marginBottom: 28, letterSpacing: '-.02em' }}>How I got here.</h2>
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                  {TIMELINE.map((item, i) => (
-                    <div key={i} style={{ display: 'grid', gridTemplateColumns: '80px 12px 1fr', gap: '0 20px', padding: '20px 0' }}>
-                      <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1rem', color: 'var(--accent)', textAlign: 'right', paddingTop: 2 }}>{item.year}</div>
-                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                        {i > 0 && <div style={{ width: 1, background: 'var(--border)', flex: '0 0 20px' }} />}
-                        <div style={{ width: 10, height: 10, borderRadius: '50%', background: 'var(--accent)', flexShrink: 0, boxShadow: '0 0 0 3px var(--accent-s)', margin: '4px 0' }} />
-                        {i < TIMELINE.length - 1 && <div style={{ width: 1, background: 'var(--border)', flex: 1, minHeight: 20 }} />}
-                      </div>
-                      <div style={{ paddingBottom: 12 }}>
-                        <div style={{ fontSize: '1rem', fontWeight: 600, marginBottom: 3 }}>{item.title}</div>
-                        <div style={{ fontSize: '0.8rem', color: 'var(--ink-3)', marginBottom: 8 }}>{item.sub}</div>
-                        <p style={{ fontSize: '0.875rem', color: 'var(--ink-2)', lineHeight: 1.65 }}>{item.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </Reveal>
-
-              {/* Philosophy */}
+            {/* Philosophy */}
               <Reveal>
                 <Eyebrow>Design philosophy</Eyebrow>
                 <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.6rem,3vw,2.4rem)', fontWeight: 400, marginTop: 12, marginBottom: 24, letterSpacing: '-.02em' }}>How I think.</h2>
