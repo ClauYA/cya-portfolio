@@ -14,16 +14,29 @@ import PhotoCarousel from '../components/blocks/PhotoCarousel';
 /* ═══════════════════════════════════════════════════════════════
    ██  ABOUT PAGE  — accessed via navbar "About" link
 ═══════════════════════════════════════════════════════════════ */
+
 export default function AboutPage() {
   const { setPage } = useContext(AppCtx);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    useEffect(() => {
+    const fn = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', fn);
+    return () => window.removeEventListener('resize', fn);
+  }, []);
+  
   return (
     <div style={{ paddingTop: 68 }}>
       <section style={{ padding: 'clamp(64px,7vw,110px) 0 clamp(48px,6vw,80px)' }}>
         <Container>
-          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 360px', gap: 'clamp(40px,7vw,80px)', alignItems: 'start' }}>
+        <div style={{ 
+          display: 'flex',
+          flexDirection: isMobile ? 'column' : 'row',
+          gap: 'clamp(40px,7vw,80px)', 
+          alignItems: 'start' 
+        }}>
 
             {/* ── Content column ── */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 64 }}>
+            <div style={{ flex: 1, minWidth: 0, order: isMobile ? 1:1 }}>
 
               {/* Intro + Resume */}
               <div>
@@ -132,7 +145,13 @@ export default function AboutPage() {
             </div>
 
             {/* ── Sticky portrait sidebar ── */}
-            <div style={{ position: 'sticky', top: 88 }}>
+            <div style={{ 
+             width: isMobile ? '100%' : 360, 
+             flexShrink: 0,
+            order: isMobile ? 2 : 2,
+            position: isMobile ? 'relative' : 'sticky',
+            top: isMobile ? 'auto' : 88
+            }}>
               <Reveal direction="right">
                {/* ── PHOTO CAROUSEL ── */}
                 <PhotoCarousel /> 

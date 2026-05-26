@@ -74,9 +74,9 @@ export default function ContactPage() {
             {/* Contact links */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               {[
-                ['✉️', 'Email',            'info@yaczoe.com',                 'mailto:info@yaczoe.com'],
-                ['💼', 'LinkedIn',         'linkedin.com/in/claudia-ya',      'https://www.linkedin.com/in/claudia-ya/'],
-                ['🎨', 'Dribbble',         'dribbble.com/cya',                'https://dribbble.com/cya'],
+                ['✉️', 'Email',            '',                 'mailto:info@yaczoe.com'],
+                ['💼', 'LinkedIn',         '',      'https://www.linkedin.com/in/claudia-ya/'],
+                ['🎨', 'Dribbble',         '',                'https://dribbble.com/cya'],
                 ['📅', 'Book a 30-min call','Calendly · Free discovery call', 'https://calendly.com/cyabittner/30min'],
               ].map(([icon, label, val, href], i) => (
                 <Reveal key={label} delay={i * 60}>
