@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { AppCtx } from '../context/AppContext';
 
 import Eyebrow   from '../components/ui/Eyebrow';
@@ -24,7 +24,6 @@ export default function ContactPage() {
     window.addEventListener('resize', fn);
     return () => window.removeEventListener('resize', fn);
   }, []);
-
 
   const handleChange = (field) => (e) => {
     setFormData(prev => ({ ...prev, [field]: e.target.value }));
@@ -77,24 +76,26 @@ export default function ContactPage() {
             </p>
           </div>
 
-          <div style={{ 
+          {/* ── Grid: links + formulario ── */}
+          <div style={{
             display: 'flex',
             flexDirection: isMobile ? 'column' : 'row',
-            gap: 'clamp(40px,7vw,80px)', 
-            alignItems: 'start' 
+            gap: 'clamp(32px,5vw,80px)',
+            alignItems: 'start',
           }}>
-            {/* Contact links */}
+
+            {/* ── Links — siempre primero ── */}
             <div style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 12,
+              display: 'flex', flexDirection: 'column', gap: 12,
               width: isMobile ? '100%' : undefined,
-              order:1 
-              }}>
-              {[['✉️', 'Email',            '',                 'mailto:info@yaczoe.com'],
-                ['💼', 'LinkedIn',         '',      'https://www.linkedin.com/in/claudia-ya/'],
-                ['🎨', 'Dribbble',         '',                'https://dribbble.com/cya'],
-                ['📅', 'Book a 30-min call','Calendly · Free discovery call', 'https://calendly.com/cyabittner/30min'],
+              flexShrink: 0,
+              order: 1,
+            }}>
+              {[
+                ['✉️', 'Email',             'info@yaczoe.com',                 'mailto:info@yaczoe.com'],
+                ['💼', 'LinkedIn',          'linkedin.com/in/claudia-ya',      'https://www.linkedin.com/in/claudia-ya/'],
+                ['🎨', 'Dribbble',          'dribbble.com/cya',                'https://dribbble.com/cya'],
+                ['📅', 'Book a 30-min call','Calendly · Free discovery call',  'https://calendly.com/cyabittner/30min'],
               ].map(([icon, label, val, href], i) => (
                 <Reveal key={label} delay={i * 60}>
                   <a href={href}
@@ -104,11 +105,11 @@ export default function ContactPage() {
                     onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.transform = 'translateX(5px)'; }}
                     onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.transform = 'none'; }}>
                     <div style={{ width: 42, height: 42, borderRadius: 10, background: 'var(--bg-inset)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem', flexShrink: 0 }}>{icon}</div>
-                    <div style={{ flex: 1 }}>
+                    <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ fontSize: '0.72rem', color: 'var(--ink-3)', fontWeight: 500, marginBottom: 2 }}>{label}</div>
-                      <div style={{ fontSize: '0.875rem', fontWeight: 600 }}>{val}</div>
+                      <div style={{ fontSize: '0.875rem', fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{val}</div>
                     </div>
-                    <span style={{ color: 'var(--ink-3)' }}>→</span>
+                    <span style={{ color: 'var(--ink-3)', flexShrink: 0 }}>→</span>
                   </a>
                 </Reveal>
               ))}
@@ -124,9 +125,9 @@ export default function ContactPage() {
               </Reveal>
             </div>
 
-            {/* Form */}
-            <Reveal delay={100} direction={{width: isMobile ? '100%' : undefined, flex: isMobile ? undefined: 1 ,order:2}}>
-              <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 22, padding: 'clamp(28px,4vw,44px)', boxShadow: 'var(--sh-lg)' }}>
+            {/* ── Formulario — siempre segundo ── */}
+            <Reveal delay={100} direction={isMobile ? 'up' : 'right'} style={{ width: isMobile ? '100%' : undefined, flex: isMobile ? undefined : 1, order: 2 }}>
+              <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 22, padding: 'clamp(24px,4vw,44px)', boxShadow: 'var(--sh-lg)' }}>
                 <h3 style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: 4 }}>Send a message</h3>
                 <p style={{ fontSize: '0.82rem', color: 'var(--ink-3)', marginBottom: 28 }}>Tell me about your project and I'll get back to you shortly.</p>
 
@@ -139,48 +140,27 @@ export default function ContactPage() {
                 ) : (
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
-                      {[['First name', 'firstName', 'Jane'], ['Last name', 'lastName', 'Smith']].map(([l, field, p]) => (
+                      {[['First name','firstName','Jane'],['Last name','lastName','Smith']].map(([l, field, p]) => (
                         <div key={l}>
                           <label style={{ fontSize: '0.72rem', fontWeight: 600, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--ink-2)', display: 'block', marginBottom: 6 }}>{l}</label>
-                          <input
-                            placeholder={p}
-                            value={formData[field]}
-                            onChange={handleChange(field)}
-                            style={inputStyle}
-                            onFocus={focusInput}
-                            onBlur={blurInput}
-                          />
+                          <input placeholder={p} value={formData[field]} onChange={handleChange(field)} style={inputStyle} onFocus={focusInput} onBlur={blurInput} />
                         </div>
                       ))}
                     </div>
 
                     {[
-                      ['Email address',        'email',   'jane@company.com',       'email'],
-                      ['Company / Project type','company', 'e.g. Fitness App Startup','text'],
+                      ['Email address',         'email',   'jane@company.com',        'email'],
+                      ['Company / Project type', 'company', 'e.g. Fitness App Startup','text'],
                     ].map(([l, field, p, type]) => (
                       <div key={l}>
                         <label style={{ fontSize: '0.72rem', fontWeight: 600, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--ink-2)', display: 'block', marginBottom: 6 }}>{l}</label>
-                        <input
-                          type={type}
-                          placeholder={p}
-                          value={formData[field]}
-                          onChange={handleChange(field)}
-                          style={inputStyle}
-                          onFocus={focusInput}
-                          onBlur={blurInput}
-                        />
+                        <input type={type} placeholder={p} value={formData[field]} onChange={handleChange(field)} style={inputStyle} onFocus={focusInput} onBlur={blurInput} />
                       </div>
                     ))}
 
                     <div>
                       <label style={{ fontSize: '0.72rem', fontWeight: 600, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--ink-2)', display: 'block', marginBottom: 6 }}>Budget range</label>
-                      <select
-                        value={formData.budget}
-                        onChange={handleChange('budget')}
-                        style={inputStyle}
-                        onFocus={focusInput}
-                        onBlur={blurInput}
-                      >
+                      <select value={formData.budget} onChange={handleChange('budget')} style={inputStyle} onFocus={focusInput} onBlur={blurInput}>
                         <option value="">Select a range</option>
                         {['Under $5,000','$5,000 – $15,000','$15,000 – $30,000','$30,000+','Let\'s discuss'].map(o => <option key={o}>{o}</option>)}
                       </select>
@@ -188,15 +168,7 @@ export default function ContactPage() {
 
                     <div>
                       <label style={{ fontSize: '0.72rem', fontWeight: 600, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--ink-2)', display: 'block', marginBottom: 6 }}>Tell me about your project</label>
-                      <textarea
-                        placeholder="What are you building? What problem needs solving? What's the timeline?"
-                        rows={4}
-                        value={formData.message}
-                        onChange={handleChange('message')}
-                        style={{ ...inputStyle, resize: 'vertical' }}
-                        onFocus={focusInput}
-                        onBlur={blurInput}
-                      />
+                      <textarea placeholder="What are you building? What problem needs solving? What's the timeline?" rows={4} value={formData.message} onChange={handleChange('message')} style={{ ...inputStyle, resize: 'vertical' }} onFocus={focusInput} onBlur={blurInput} />
                     </div>
 
                     <Btn variant="accent" fullWidth onClick={handleSubmit}>
@@ -206,6 +178,7 @@ export default function ContactPage() {
                 )}
               </div>
             </Reveal>
+
           </div>
         </Container>
       </Section>
