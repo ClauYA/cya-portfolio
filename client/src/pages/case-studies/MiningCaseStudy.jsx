@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext,useState } from 'react';
 import { AppCtx }    from '../../context/AppContext';
 import useReadingProgress from '../../hooks/useReadingProgress';
 
@@ -8,8 +8,16 @@ import Tag       from '../../components/ui/Tag';
 import Reveal    from '../../components/ui/Reveal';
 import Container from '../../components/ui/Container';
 import Footer    from '../../components/Footer';
+import imgUserFlow         from '../../assets/case-studies/mining/user-flow.png';
+import imgUseCaseGen       from '../../assets/case-studies/mining/caso-de-uso-general.png';
+import imgUseCaseRoy       from '../../assets/case-studies/mining/caso-de-uso.png';
+import imgRevisionLegal    from '../../assets/case-studies/mining/revision-legal.png';
+import imgRevisionUsers    from '../../assets/case-studies/mining/revision-usuarios.png';
+import imgRevisionUsersEnd from '../../assets/case-studies/mining/revision-usuarios-last.png';
+import imgDesignSystem     from '../../assets/case-studies/mining/design-system.png';
 
 export default function MiningCaseStudy() {
+  const [lightbox, setLightbox] = useState(null);
   const { setPage } = useContext(AppCtx);
   const readingPct  = useReadingProgress();
 
@@ -21,9 +29,33 @@ export default function MiningCaseStudy() {
       </Container>
     </section>
   );
-
+  // Lightbox overlay
+const Lightbox = () => lightbox ? (
+  <div
+    onClick={() => setLightbox(null)}
+    style={{
+      position: 'fixed', inset: 0, zIndex: 1000,
+      background: 'rgba(0,0,0,0.92)',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      cursor: 'zoom-out', padding: 24,
+    }}>
+    <button
+      onClick={() => setLightbox(null)}
+      style={{ position: 'absolute', top: 20, right: 24, background: 'none', border: 'none', color: '#fff', fontSize: '2rem', cursor: 'pointer', lineHeight: 1 }}>
+      ×
+    </button>
+    <img
+      src={lightbox.src}
+      alt={lightbox.alt}
+      onClick={e => e.stopPropagation()}
+      style={{ maxWidth: '90vw', maxHeight: '85vh', objectFit: 'contain', borderRadius: 12, boxShadow: '0 24px 80px rgba(0,0,0,0.5)' }}
+    />
+    <div style={{ position: 'absolute', bottom: 24, color: 'rgba(255,255,255,0.7)', fontSize: '0.85rem' }}>{lightbox.alt}</div>
+  </div>
+) : null;
   return (
     <div style={{ paddingTop: 68 }}>
+      <Lightbox/>
       <div className="reading-progress-bar">
         <div className="reading-progress-fill" style={{ width: `${readingPct}%` }} />
       </div>
@@ -95,28 +127,108 @@ export default function MiningCaseStudy() {
       {/* ── MY ROLE ── */}
       <CsSection eyebrow="My Role — What I focused on" sage>
         <div style={{ marginTop: 24 }}>
-          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.5rem,2.5vw,2rem)', fontWeight: 400, marginBottom: 16 }}>I joined this project focused on three areas.</h2>
+          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.5rem,2.5vw,2rem)', fontWeight: 400, marginBottom: 16 }}>
+            I joined this project focused on three areas.
+          </h2>
           <p style={{ fontSize: '1rem', color: 'var(--ink-2)', lineHeight: 1.72, maxWidth: 700, marginBottom: 32 }}>
-            Working closely with AMSIX's development team and government representatives from the Department of Oruro, my contributions were scoped to UI design, information architecture, and the design system. I was not the sole designer — this was a collaborative project with developers, legal advisors, and stakeholders.
+            Working closely with AMSIX's development team and government representatives from the Department of Oruro, my contributions were scoped to UI design, information architecture, and the design system.
           </p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(280px,1fr))', gap: 16 }}>
-            {[
-              { icon: '🏗️', label: 'Information Architecture', desc: 'Mapped user journeys for 3 distinct user types: government officials, cooperative leaders, and field inspectors. Designed the navigation structure and content hierarchy for a complex multi-stakeholder platform.', tags: ['User Flows','Sitemaps','Navigation Design'] },
-              { icon: '🎨', label: 'UI Design',                 desc: 'Designed the platform interfaces — dashboards, royalty registration forms, compliance tracking screens, and reporting views — ensuring clarity for users with varying levels of digital literacy.',           tags: ['Dashboards','Forms','Data Tables','Responsive'] },
-              { icon: '🧩', label: 'Design System',             desc: 'Built reusable UI components and design templates aligned with technical implementation constraints. Ensured consistency across all platform surfaces and facilitated smooth developer handoff.',                   tags: ['Component Library','Tokens','Dev Handoff','Angular'] },
-            ].map(item => (
-              <div key={item.label}
-                style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 20, padding: 28, transition: 'all .2s' }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--sage)'; e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = 'var(--sh-md)'; }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none'; }}>
-                <div style={{ fontSize: '2rem', marginBottom: 12 }}>{item.icon}</div>
-                <div style={{ fontSize: '1rem', fontWeight: 700, marginBottom: 10 }}>{item.label}</div>
-                <p style={{ fontSize: '0.875rem', color: 'var(--ink-2)', lineHeight: 1.65, marginBottom: 14 }}>{item.desc}</p>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                  {item.tags.map(t => <Tag key={t} variant="sage">{t}</Tag>)}
-                </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
+
+            {/* ── Card 1: Information Architecture ── */}
+            <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 20, padding: 28, transition: 'all .2s' }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--sage)'; e.currentTarget.style.boxShadow = 'var(--sh-md)'; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.boxShadow = 'none'; }}>
+              <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 12 }}>
+                <span style={{ fontSize: '2rem' }}>🏗️</span>
+                <div style={{ fontSize: '1rem', fontWeight: 700 }}>Information Architecture</div>
               </div>
-            ))}
+              <p style={{ fontSize: '0.875rem', color: 'var(--ink-2)', lineHeight: 1.65, marginBottom: 20 }}>
+                Mapped user journeys for 3 distinct user types: government officials, cooperative leaders, and field inspectors. Designed the navigation structure and content hierarchy for a complex multi-stakeholder platform.
+              </p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 20 }}>
+                {['User Flows', 'Sitemaps', 'Navigation Design'].map(t => <Tag key={t} variant="sage">{t}</Tag>)}
+              </div>
+              {/* Image gallery — 3 images */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
+                {[
+                  [imgUserFlow,     'User Flow Diagram'],
+                  [imgUseCaseGen,   'General Use Case'],
+                  [imgUseCaseRoy,   'Royalties Use Case'],
+                ].map(([src, alt]) => (
+                  <div key={alt} style={{ borderRadius: 10, overflow: 'hidden', border: '1px solid var(--border)', background: 'var(--bg-inset)', cursor: 'zoom-in' }}
+                    onClick={() => setLightbox({ src, alt })}>
+                    <img src={src} alt={alt}
+                      style={{ width: '100%', height: 140, objectFit: 'cover', objectPosition: 'top left', display: 'block', transition: 'transform 0.3s ease' }}
+                      onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.04)'}
+                      onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+                    />
+                    <div style={{ padding: '6px 10px', fontSize: '0.65rem', color: 'var(--ink-3)', fontWeight: 500 }}>{alt}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* ── Card 2: UI Design ── */}
+            <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 20, padding: 28, transition: 'all .2s' }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--sage)'; e.currentTarget.style.boxShadow = 'var(--sh-md)'; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.boxShadow = 'none'; }}>
+              <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 12 }}>
+                <span style={{ fontSize: '2rem' }}>🎨</span>
+                <div style={{ fontSize: '1rem', fontWeight: 700 }}>UI Design</div>
+              </div>
+              <p style={{ fontSize: '0.875rem', color: 'var(--ink-2)', lineHeight: 1.65, marginBottom: 20 }}>
+                Designed the platform interfaces — dashboards, royalty registration forms, compliance tracking screens, and reporting views — ensuring clarity for users with varying levels of digital literacy.
+              </p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 20 }}>
+                {['Dashboards', 'Forms', 'Data Tables', 'Responsive'].map(t => <Tag key={t} variant="sage">{t}</Tag>)}
+              </div>
+              {/* Image gallery — 3 images */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
+                {[
+                  [imgRevisionUsers,    'User Review Dashboard'],
+                  [imgRevisionUsersEnd, 'Approved User View'],
+                  [imgRevisionLegal,    'Legal Review Screen'],
+                ].map(([src, alt]) => (
+                  <div key={alt} style={{ borderRadius: 10, overflow: 'hidden', border: '1px solid var(--border)', background: 'var(--bg-inset)', cursor: 'zoom-in' }}
+                    onClick={() => window.open(src, '_blank')}>
+                    <img src={src} alt={alt}
+                      style={{ width: '100%', height: 140, objectFit: 'cover', objectPosition: 'top left', display: 'block', transition: 'transform 0.3s ease' }}
+                      onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.04)'}
+                      onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+                    />
+                    <div style={{ padding: '6px 10px', fontSize: '0.65rem', color: 'var(--ink-3)', fontWeight: 500 }}>{alt}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* ── Card 3: Design System ── */}
+            <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 20, padding: 28, transition: 'all .2s' }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--sage)'; e.currentTarget.style.boxShadow = 'var(--sh-md)'; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.boxShadow = 'none'; }}>
+              <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 12 }}>
+                <span style={{ fontSize: '2rem' }}>🧩</span>
+                <div style={{ fontSize: '1rem', fontWeight: 700 }}>Design System</div>
+              </div>
+              <p style={{ fontSize: '0.875rem', color: 'var(--ink-2)', lineHeight: 1.65, marginBottom: 20 }}>
+                Built reusable UI components and design templates aligned with technical implementation constraints. Ensured consistency across all platform surfaces and facilitated smooth developer handoff.
+              </p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 20 }}>
+                {['Component Library', 'Tokens', 'Dev Handoff', 'Angular'].map(t => <Tag key={t} variant="sage">{t}</Tag>)}
+              </div>
+              {/* Image — full width */}
+              <div style={{ borderRadius: 10, overflow: 'hidden', border: '1px solid var(--border)', background: 'var(--bg-inset)', cursor: 'zoom-in' }}
+                onClick={() => window.open(imgDesignSystem, '_blank')}>
+                <img src={imgDesignSystem} alt="Design System Overview"
+                  style={{ width: '100%', height: 220, objectFit: 'cover', objectPosition: 'top left', display: 'block', transition: 'transform 0.3s ease' }}
+                  onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.02)'}
+                  onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+                />
+                <div style={{ padding: '6px 10px', fontSize: '0.65rem', color: 'var(--ink-3)', fontWeight: 500 }}>Design System — Figma Component Library</div>
+              </div>
+            </div>
+
           </div>
         </div>
       </CsSection>

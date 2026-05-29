@@ -1,45 +1,55 @@
-const express = require('express');
-const router = express.Router();
-const pool = require('../config/database');
+const express     = require('express');
+const router      = express.Router();
+const transporter = require('../utils/mailer');
 
-// POST /api/contact — Save contact form submission
 router.post('/', async (req, res) => {
   const { firstName, lastName, email, company, budget, message } = req.body;
 
-  // Basic validation
   if (!email || !message) {
-    return res.status(400).json({ error: 'Email and message are required' });
+    return res.status(400).json({ success: false, error: 'Email y mensaje son requeridos' });
   }
 
   try {
-    const result = await pool.query(
-      `INSERT INTO contact_submissions 
-        (first_name, last_name, email, company, budget, message, created_at)
-       VALUES ($1, $2, $3, $4, $5, $6, NOW())
-       RETURNING id`,
-      [firstName, lastName, email, company, budget, message]
-    );
-
-    res.status(201).json({
-      success: true,
-      message: 'Message received! I will get back to you within 24 hours.',
-      id: result.rows[0].id
+    await transporter.sendMail({
+      from:    `"CYA Portfolio" <${process.env.EMAIL_USER}>`,
+      to:      process.env.EMAIL_USER,
+      subject: `Nueva consulta de ${firstName} ${lastName}`,
+      html: `
+        <div style="font-family:sans-serif;max-width:600px;margin:0 auto;">
+          <h2 style="color:#366464;">Nuevo mensaje desde tu portfolio</h2>
+          <p><strong>Nombre:</strong> ${firstName} ${lastName}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Empresa:</strong> ${company || 'No especificado'}</p>
+          <p><strong>Presupuesto:</strong> ${budget || 'No especificado'}</p>
+          <div style="margin-top:20px;padding:16px;background:#f5f5f5;border-radius:8px;">
+            <strong>Mensaje:</strong>
+            <p>${message}</p>
+          </div>
+        </div>
+      `,
     });
-  } catch (error) {
-    console.error('Database error:', error);
-    res.status(500).json({ error: 'Something went wrong. Please try again.' });
-  }
-});
 
-// GET /api/contact — Get all submissions (you can view these)
-router.get('/', async (req, res) => {
-  try {
-    const result = await pool.query(
-      'SELECT * FROM contact_submissions ORDER BY created_at DESC'
-    );
-    res.json(result.rows);
+    await transporter.sendMail({
+      from:    `"Claudia Bittner" <${process.env.EMAIL_USER}>`,
+      to:      email,
+      subject: 'Got your message — Claudia Bittner',
+      html: `
+        <div style="font-family:sans-serif;max-width:600px;margin:0 auto;">
+          <h2 style="color:#366464;">Hi ${firstName}!</h2>
+          <p>Thanks for reaching out. I received your message and will get back to you within 24 hours.</p>
+          <br/>
+          <p style="color:#666;">— Claudia Bittner</p>
+          <p style="color:#666;">UX/UI Designer & Frontend Developer</p>
+          <a href="https://yaczoe.com" style="color:#366464;">yaczoe.com</a>
+        </div>
+      `,
+    });
+
+    res.status(200).json({ success: true });
+
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch submissions' });
+    console.error('Error enviando email:', error);
+    res.status(500).json({ success: false, error: 'No se pudo enviar el email' });
   }
 });
 
