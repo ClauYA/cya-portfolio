@@ -33,7 +33,7 @@ export default function AboutPage() {
           }}>
 
             {/* ── Columna izquierda — texto ── */}
-            <div style={{ flex: 1, minWidth: 0, order: 1, display: 'flex', flexDirection: 'column', gap: 64 }}>
+            <div style={{ flex: 1, minWidth: 0, order: isMobile? 2:1, display: 'flex', flexDirection: 'column', gap: 64 }}>
 
               {/* Intro */}
               <div>
@@ -56,7 +56,7 @@ export default function AboutPage() {
             <div style={{
               width: isMobile ? '100%' : 360,
               flexShrink: 0,
-              order: isMobile ? 2 : 2,
+              order: isMobile ? 1 : 2,
               position: isMobile ? 'relative' : 'sticky',
               top: isMobile ? 'auto' : 88,
               }}>
