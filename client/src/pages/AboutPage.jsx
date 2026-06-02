@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
-import { AppCtx }          from '../context/AppContext';
-import { TOOLS } from '../data/about';
+import { AppCtx }     from '../context/AppContext';
+import { TOOLS }      from '../data/about';
+import { TIMELINE }   from '../data/about';
 
 import Eyebrow       from '../components/ui/Eyebrow';
 import Btn           from '../components/ui/Btn';
@@ -33,7 +34,14 @@ export default function AboutPage() {
           }}>
 
             {/* ── Columna izquierda — texto ── */}
-            <div style={{ flex: 1, minWidth: 0, order: isMobile? 2:1, display: 'flex', flexDirection: 'column', gap: 64 }}>
+            <div style={{
+              flex: 1,
+              minWidth: 0,
+              order: isMobile ? 2 : 1,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 64
+            }}>
 
               {/* Intro */}
               <div>
@@ -52,29 +60,8 @@ export default function AboutPage() {
                   <ResumeBtn size="md" />
                 </div>
               </div>
-            {/* ── Carrusel — debajo en móvil, sticky en desktop ── */}
-            <div style={{
-              width: isMobile ? '100%' : 360,
-              flexShrink: 0,
-              order: isMobile ? 1 : 2,
-              position: isMobile ? 'relative' : 'sticky',
-              top: isMobile ? 'auto' : 88,
-              }}>
-              <Reveal direction="right">
-                <PhotoCarousel />
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 20 }}>
-                  {[['3+','Years Experience'],['5+','Projects Delivered'],['100%','Client Satisfaction']].map(([n, l]) => (
-                    <div key={l} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 14px', borderRadius: 10, background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
-                      <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', color: 'var(--accent)' }}>{n}</div>
-                      <div style={{ fontSize: '0.72rem', color: 'var(--ink-3)', fontWeight: 500 }}>{l}</div>
-                    </div>
-                  ))}
-                  <AvailDot text="Available for new work" />
-                  <ResumeBtn size="md" style={{ justifyContent: 'center', width: '100%', marginTop: 6 }} />
-                </div>
-              </Reveal>
-            </div>
-            {/* Philosophy */}
+
+              {/* Philosophy */}
               <Reveal>
                 <Eyebrow>Design philosophy</Eyebrow>
                 <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.6rem,3vw,2.4rem)', fontWeight: 400, marginTop: 12, marginBottom: 24, letterSpacing: '-.02em' }}>How I think.</h2>
@@ -117,7 +104,28 @@ export default function AboutPage() {
               <div style={{ paddingBottom: 60 }} />
             </div>
 
-            
+            {/* ── Columna derecha — Carrusel sticky ── */}
+            <div style={{
+              width: isMobile ? '100%' : 360,
+              flexShrink: 0,
+              order: isMobile ? 1 : 2,
+              position: isMobile ? 'relative' : 'sticky',
+              top: isMobile ? 'auto' : 88,
+            }}>
+              <Reveal direction="right">
+                <PhotoCarousel />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 20 }}>
+                  {[['3+','Years Experience'],['5+','Projects Delivered'],['100%','Client Satisfaction']].map(([n, l]) => (
+                    <div key={l} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 14px', borderRadius: 10, background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
+                      <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', color: 'var(--accent)' }}>{n}</div>
+                      <div style={{ fontSize: '0.72rem', color: 'var(--ink-3)', fontWeight: 500 }}>{l}</div>
+                    </div>
+                  ))}
+                  <AvailDot text="Available for new work" />
+                  <ResumeBtn size="md" style={{ justifyContent: 'center', width: '100%', marginTop: 6 }} />
+                </div>
+              </Reveal>
+            </div>
 
           </div>
         </Container>
