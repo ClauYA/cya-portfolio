@@ -50,10 +50,16 @@ export default function AboutPage() {
                   Designing with <em style={{ color: 'var(--accent)', fontStyle: 'normal' }}>purpose.</em>
                 </h1>
                 <p className="anim-fadeup d200" style={{ fontSize: '1.05rem', color: 'var(--ink-2)', marginTop: 20, lineHeight: 1.72, maxWidth: 600 }}>
-                  I'm a Designer and Frontend Developer with a full-stack foundation — I design with the backend in mind, understanding what is buildable, scalable, and consistent across platforms.
+                  I didn't find UX Design. UX Design helped me reconnect with technology.
                 </p>
                 <p className="anim-fadeup d300" style={{ fontSize: '1rem', color: 'var(--ink-2)', marginTop: 16, lineHeight: 1.72 }}>
-                  I translate user research and business requirements into reusable components, clear user stories, and structured information architecture. Experienced across product, design, and engineering teams in Agile environments.
+                  With a Computer Engineering background, I originally thought my career would revolve around building software. But after moving to the United States, I explored different paths and began questioning whether technology was still where I belonged. Discovering UX/UI Design changed that.
+                </p>
+                <p className="anim-fadeup d300" style={{ fontSize: '1rem', color: 'var(--ink-2)', marginTop: 16, lineHeight: 1.72 }}>
+                 It allowed me to combine my technical foundation with something I had always enjoyed: understanding people. Today, I design products that are not only functional and feasible to build, but also meaningful, intuitive, and human-centered.
+                </p>
+                 <p className="anim-fadeup d300" style={{ fontSize: '1rem', color: 'var(--ink-2)', marginTop: 16, lineHeight: 1.72 }}>
+                When I'm not designing, you'll probably find me lifting weights, experimenting in the kitchen, helping someone improve their fitness habits, or spending time with kids—who constantly remind me that curiosity is one of the most powerful design tools we have.
                 </p>
                 <div className="anim-fadeup d400" style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 28, alignItems: 'center' }}>
                   <Btn variant="solid" onClick={() => setPage('contact')}>Work with me →</Btn>

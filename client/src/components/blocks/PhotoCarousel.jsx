@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import PHOTO1_SRC from '../../assets/foto.png';
 import PHOTO2_SRC from '../../assets/ClaudiaC2.jpg';
-import PHOTO3_SRC from '../../assets/ClaudiaFt.png';
+import PHOTO3_SRC from '../../assets/claudia.png';
 
 export default function PhotoCarousel() {
   const photos = [

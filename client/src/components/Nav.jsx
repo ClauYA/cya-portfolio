@@ -3,7 +3,6 @@ import { AppCtx }   from '../context/AppContext';
 import useScroll    from '../hooks/useScroll';
 import Btn          from './ui/Btn';
 import ResumeBtn    from './ui/ResumeBtn';
-import LOGO_IMG     from '../assets/logo.png';
 
 export default function Nav() {
   const { page, setPage, theme, setTheme } = useContext(AppCtx);
@@ -61,12 +60,11 @@ export default function Nav() {
           {/* Logo */}
           <div style={{ cursor: 'pointer', flexShrink: 0 }} onClick={() => setPage('home')}>
             <img
-              src={LOGO_IMG}
+              src={theme === 'dark' ? '/cya-logo-white.png' : '/cya-logo-dark.png'}
               alt="CYA Logo"
               style={{
-                height: 44, width: 'auto', objectFit: 'contain',
-                filter: theme === 'dark' ? 'invert(1) brightness(1.3)' : 'brightness(0) saturate(100%)',
-                transition: 'transform .22s cubic-bezier(0.34,1.56,0.64,1), filter .4s ease',
+                height: 40, width: 'auto', objectFit: 'contain',
+                transition: 'transform .22s cubic-bezier(0.34,1.56,0.64,1)',
               }}
               onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.06)'; }}
               onMouseLeave={e => { e.currentTarget.style.transform = 'none'; }}

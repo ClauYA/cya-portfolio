@@ -121,8 +121,12 @@ export default function HomePage() {
             </Reveal>
             <Reveal delay={400}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, flexWrap: 'wrap', marginTop: 28 }}>
-                {[['💼','LinkedIn'],['🎨','Dribbble'],['📅','Book a call']].map(([icon, label]) => (
-                  <a key={label} href="#"
+                {[
+                  ['💼','LinkedIn',   'https://www.linkedin.com/in/claudia-ya/'],
+                  ['🎨','Dribbble',   'https://dribbble.com/cya'],
+                  ['📅','Book a call','https://calendly.com/cyabittner/30min'],
+                ].map(([icon, label, href]) => (
+                  <a key={label} href={href} target="_blank" rel="noopener noreferrer"
                     style={{ display: 'flex', alignItems: 'center', gap: 7, padding: '7px 16px', borderRadius: 9999, background: 'var(--bg-card)', border: '1px solid var(--border-m)', fontSize: '0.85rem', fontWeight: 500, color: 'var(--ink-2)', transition: 'all .2s' }}
                     onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.color = 'var(--accent)'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
                     onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border-m)'; e.currentTarget.style.color = 'var(--ink-2)'; e.currentTarget.style.transform = 'none'; }}>

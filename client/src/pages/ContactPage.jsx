@@ -116,9 +116,7 @@ export default function ContactPage() {
 
               <Reveal delay={280}>
                 <div style={{ padding: '16px 20px', borderRadius: 14, background: 'var(--sage-s)', border: '1px solid var(--sage-g)', display: 'flex', alignItems: 'center', gap: 12 }}>
-                  <span style={{ fontSize: '1.2rem' }}>🌿</span>
                   <div>
-                    <div style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--sage)', marginBottom: 2 }}>Currently available</div>
                     <div style={{ fontSize: '0.8rem', color: 'var(--ink-2)' }}>Accepting new projects for Q3 2026. Response within 24h.</div>
                   </div>
                 </div>
