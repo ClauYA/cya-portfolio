@@ -58,6 +58,7 @@ export default function HomePage() {
 
             <div style={{ width: '100%' }}>
                <div className="anim-fadeup" style={{ display: 'flex', alignItems: 'right', justifyContent: 'right', gap: 14, marginBottom: 32, flexWrap: 'wrap' }}>
+                <AvailDot />
                 <Tag>US Location</Tag>
           </div> 
               {/* Titular animado: efecto máquina de escribir */}
@@ -103,9 +104,6 @@ export default function HomePage() {
       <section style={{ position: 'relative', overflow: 'hidden', padding: 'clamp(80px,10vw,140px) 0' }}>
         <div style={{ position: 'absolute', inset: 0, background: 'var(--bg-inset)', clipPath: 'polygon(0 7%, 100% 0%, 100% 93%, 0 100%)' }} />
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 4, background: 'linear-gradient(90deg, var(--accent), var(--sage))', opacity: 0.35 }} />
-         <div className="anim-fadeup" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 14, marginBottom: 32, flexWrap: 'wrap' }}>
-                <AvailDot />
-          </div>
         <Container style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
           <div style={{ maxWidth: 600, margin: '0 auto' }}>
             <Reveal><Eyebrow center>Ready when you are</Eyebrow></Reveal>
