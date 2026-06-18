@@ -19,8 +19,8 @@ export default function ServicesPage() {
       <section style={{ padding: 'clamp(64px,7vw,110px) 0 clamp(40px,5vw,64px)' }}>
         <Container>
           <div className="anim-fadeup"><Eyebrow>What I offer</Eyebrow></div>
-          <h1 className="anim-fadeup d100" style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2.8rem,6vw,4.5rem)', fontWeight: 400, lineHeight: 1.05, letterSpacing: '-.03em', marginTop: 16 }}>
-            Design services<br /><em style={{ color: 'var(--accent)' }}>built to scale.</em>
+          <h1 className="anim-fadeup d100" style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.6rem,4vw,2.8rem)', fontWeight: 400, lineHeight: 1.05, letterSpacing: '-.03em', marginTop: 16 }}>
+            Design services <em style={{ color: 'var(--accent)', fontStyle: 'normal' }}>built to scale.</em>
           </h1>
           <p className="anim-fadeup d200" style={{ fontSize: '1.05rem', color: 'var(--ink-2)', marginTop: 20, lineHeight: 1.7, maxWidth: 560 }}>
             From early discovery to shipped product — end-to-end design capability for startups, product teams, and brands that want to grow.
@@ -28,7 +28,7 @@ export default function ServicesPage() {
         </Container>
       </section>
 
-      <Section>
+      <Section style={{ padding: '0 0 clamp(80px,10vw,160px)' }}>
         <Container>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(320px,1fr))', gap: 18 }}>
             {SERVICES.map((s, i) => (
@@ -84,7 +84,7 @@ export default function ServicesPage() {
       <section style={{ padding: 'clamp(80px,10vw,120px) 0', textAlign: 'center' }}>
         <Container>
           <Reveal>
-            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.8rem,3.5vw,2.8rem)', fontWeight: 400, letterSpacing: '-.02em', marginBottom: 24 }}>Ready to start a project?</h2>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.6rem,4vw,2.8rem)', fontWeight: 400, letterSpacing: '-.02em', marginBottom: 24 }}>Ready to start a project?</h2>
             <Btn variant="accent" size="lg" onClick={() => setPage('contact')}>Let's Talk →</Btn>
           </Reveal>
         </Container>

@@ -71,9 +71,8 @@ const Lightbox = () => lightbox ? (
           </button>
 
           <div className="anim-fadeup"><Eyebrow>Case study · 02</Eyebrow></div>
-          <h1 className="anim-fadeup d100" style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2.8rem,6vw,4.5rem)', fontWeight: 400, lineHeight: 1.05, letterSpacing: '-.03em', marginTop: 16 }}>
-            Mining Royalties —<br />
-            <em style={{ color: 'var(--accent)' }}>Bolivia Government Platform</em>
+          <h1 className="anim-fadeup d100" style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.6rem,4vw,2.8rem)', fontWeight: 400, lineHeight: 1.05, letterSpacing: '-.03em', marginTop: 16 }}>
+            Mining Royalties — <em style={{ color: 'var(--accent)', fontStyle: 'normal' }}>Bolivia Government Platform</em>
           </h1>
 
           <div className="anim-fadeup d200" style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginTop: 20 }}>
@@ -354,8 +353,8 @@ const Lightbox = () => lightbox ? (
 
       {/* ── OUTCOME ── */}
       <CsSection eyebrow="Outcome & Impact">
-        <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.8rem,3.5vw,2.8rem)', fontWeight: 400, marginTop: 16, marginBottom: 32, letterSpacing: '-.02em' }}>
-          From paper chaos to <em style={{ color: 'var(--accent)' }}>real-time clarity.</em>
+        <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.6rem,4vw,2.8rem)', fontWeight: 400, marginTop: 16, marginBottom: 32, letterSpacing: '-.02em' }}>
+          From paper chaos to <em style={{ color: 'var(--accent)', fontStyle: 'normal' }}>real-time clarity.</em>
         </h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(200px,1fr))', gap: 14, marginBottom: 40 }}>
           {[

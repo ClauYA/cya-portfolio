@@ -6,7 +6,7 @@ export default function SectionHeader({ eyebrow, heading, sub, center, sage, mar
     <div style={{ textAlign: center ? 'center' : undefined, marginBottom }}>
       <Reveal>
         <Eyebrow center={center} sage={sage}>{eyebrow}</Eyebrow>
-        <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2rem,4.5vw,3rem)', fontWeight: 400, lineHeight: 1.1, letterSpacing: '-.02em', marginTop: 14, color: 'var(--ink)' }}>
+        <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.6rem,4vw,2.8rem)', fontWeight: 400, lineHeight: 1.1, letterSpacing: '-.02em', marginTop: 14, color: 'var(--ink)' }}>
           {heading}
         </h2>
         {sub && (

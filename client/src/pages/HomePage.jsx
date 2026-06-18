@@ -1,7 +1,6 @@
 import { useContext, useState, useCallback, useEffect } from 'react';
 import { AppCtx }          from '../context/AppContext';
 import { PROJECTS }        from '../data/projects';
-import { SPECIALTY_TAGS }  from '../data/tags';
 
 import Btn           from '../components/ui/Btn';
 import Tag           from '../components/ui/Tag';
@@ -11,13 +10,21 @@ import Container     from '../components/ui/Container';
 import Section       from '../components/ui/Section';
 import SectionHeader from '../components/ui/SectionHeader';
 import AvailDot      from '../components/ui/AvailDot';
+import Typewriter    from '../components/ui/Typewriter';
 import Footer        from '../components/Footer';
 import ProjectCard   from '../components/blocks/ProjectCard';
-import ProfileCard   from '../components/blocks/ProfileCard';
 //import SkillBar      from '../components/blocks/SkillBar';
 
-import PHOTO_SRC from '../assets/foto.png';
 //import { SKILLS } from '../data/skills';
+
+// Frases del titular animado (typewriter)
+const HERO_PHRASES = [
+  'Claudia Bittner',
+  'Product Design',
+  'Human-Centered Design',
+  'detail driven interfaces',
+  'Interaction Design',
+];
 
 export default function HomePage() {
   const { setPage, setCaseProject } = useContext(AppCtx);
@@ -46,27 +53,25 @@ export default function HomePage() {
           <div style={{ position: 'absolute', width: 300, height: 300, borderRadius: '50%', background: 'radial-gradient(circle, var(--sage-g) 0%, transparent 70%)', right: 200, bottom: 40, animation: 'float 9s ease-in-out 3.5s infinite' }} />
         </div>
 
-        <Container style={{ position: 'relative', zIndex: 1 }}>
-          <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: isMobile ? 32 : 48, alignItems: 'flex-start', width: '100%' }}>
+        <Container style={{ position: 'relative', zIndex: 1, width: '100%' }}>
+          <div style={{ textAlign: 'center', width: '100%' }}>
 
-            {/* LEFT */}
-            <div style={{ flex: 1, minWidth: 0, order: isMobile ? 1 : 1 }}>
-              <div className="anim-fadeup" style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 32, flexWrap: 'wrap' }}>
-                <AvailDot />
+            <div style={{ width: '100%' }}>
+               <div className="anim-fadeup" style={{ display: 'flex', alignItems: 'right', justifyContent: 'right', gap: 14, marginBottom: 32, flexWrap: 'wrap' }}>
                 <Tag>US Location</Tag>
-              </div>
-              <h1 className="anim-fadeup d100" style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(3rem,7.5vw,5.8rem)', fontWeight: 400, lineHeight: 1.02, letterSpacing: '-.03em', color: 'var(--ink)', marginBottom: 28 }}>
-                Crafted with<br />
-                <em style={{ color: 'var(--accent)' }}>Intention</em>
+          </div> 
+              {/* Titular animado: efecto máquina de escribir */}
+              <h1 className="anim-fadeup d100 typewriter-heading" aria-label="Claudia Yupanqui — Product & UX/UI Designer" style={{ marginBottom: 20, minHeight: '1.25em' }}>
+                <Typewriter phrases={HERO_PHRASES} />
               </h1>
-              <p className="anim-fadeup d200" style={{ fontSize: 'clamp(1rem,1.8vw,1.2rem)', color: 'var(--ink-2)', lineHeight: 1.72, maxWidth: 560, marginBottom: 40 }}>
+              <p className="anim-fadeup d200" style={{ fontSize: 'clamp(1rem,1.8vw,1.2rem)', color: 'var(--ink-2)', lineHeight: 1.72, maxWidth: 560, margin: '0 auto 40px' }}>
                 I design interfaces that are minimal, approachable, and aligned with user needs. My goal is to build experiences that feel professional, friendly, and easy to trust.
               </p>
-              <div className="anim-fadeup d300" style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 48 }}>
+              <div className="anim-fadeup d300" style={{ display: 'flex', justifyContent: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 48 }}>
                 <Btn variant="solid" size="lg" onClick={() => setPage('projects')}>View Projects →</Btn>
                 <Btn variant="outline" size="lg" onClick={() => setPage('contact')}>Let's Work Together</Btn>
               </div>
-              <div className="anim-fadeup d400" style={{ paddingTop: 32, borderTop: '1px solid var(--border)', display: 'flex', gap: 40, flexWrap: 'wrap' }}>
+              <div className="anim-fadeup d400" style={{ paddingTop: 32, borderTop: '1px solid var(--border)', display: 'flex', justifyContent: 'center', gap: 40, flexWrap: 'wrap' }}>
                 {[['3+','Years Experience'],['5+','Projects Shipped'],['100%','Client Satisfaction'],['3×','Avg Conversion Lift']].map(([n,l]) => (
                   <div key={l}>
                     <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.9rem,3vw,2.5rem)', fontWeight: 400, letterSpacing: '-.04em', color: 'var(--ink)', lineHeight: 1 }}>{n}</div>
@@ -74,11 +79,6 @@ export default function HomePage() {
                   </div>
                 ))}
               </div>
-            </div>
-
-            {/* RIGHT */}
-            <div className="anim-fadeup d300" style={{ order: isMobile ? 2 : 2, width: isMobile ? '100%' : '340px', flexShrink: 0, paddingTop: isMobile ? '0px' : '80px' }}>
-              <ProfileCard photoSrc={PHOTO_SRC} tags={SPECIALTY_TAGS} />
             </div>
           </div>
         </Container>
@@ -88,7 +88,7 @@ export default function HomePage() {
       <Section>
         <Container>
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 56, flexWrap: 'wrap', gap: 20 }}>
-            <SectionHeader eyebrow="Selected work" heading={<>Projects that<br /><em style={{ color: 'var(--accent)' }}>drive results.</em></>} marginBottom={0} />
+            <SectionHeader eyebrow="Selected work" heading={<>Projects that <em style={{ color: 'var(--accent)', fontStyle: 'normal' }}>drive results.</em></>} marginBottom={0} />
             <Reveal delay={100}><Btn variant="outline" onClick={() => setPage('projects')}>View all projects →</Btn></Reveal>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
@@ -103,12 +103,15 @@ export default function HomePage() {
       <section style={{ position: 'relative', overflow: 'hidden', padding: 'clamp(80px,10vw,140px) 0' }}>
         <div style={{ position: 'absolute', inset: 0, background: 'var(--bg-inset)', clipPath: 'polygon(0 7%, 100% 0%, 100% 93%, 0 100%)' }} />
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 4, background: 'linear-gradient(90deg, var(--accent), var(--sage))', opacity: 0.35 }} />
+         <div className="anim-fadeup" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 14, marginBottom: 32, flexWrap: 'wrap' }}>
+                <AvailDot />
+          </div>
         <Container style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
           <div style={{ maxWidth: 600, margin: '0 auto' }}>
             <Reveal><Eyebrow center>Ready when you are</Eyebrow></Reveal>
             <Reveal delay={100}>
-              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2rem,4.5vw,3.2rem)', fontWeight: 400, lineHeight: 1.1, letterSpacing: '-.02em', marginTop: 16 }}>
-                Let's build experiences<br /><em style={{ color: 'var(--accent)' }}>people remember.</em>
+              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.6rem,4vw,2.8rem)', fontWeight: 400, lineHeight: 1.1, letterSpacing: '-.02em', marginTop: 16 }}>
+                Let's build experiences <em style={{ color: 'var(--accent)', fontStyle: 'normal' }}>people remember.</em>
               </h2>
             </Reveal>
             <Reveal delay={200}><p style={{ fontSize: '1.05rem', color: 'var(--ink-2)', marginTop: 16, lineHeight: 1.7 }}>Whether you're a startup, a fitness brand, or a bold founder — let's create something extraordinary together.</p></Reveal>

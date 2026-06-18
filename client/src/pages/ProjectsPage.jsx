@@ -28,8 +28,8 @@ export default function ProjectsPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 360px', gap: 64, alignItems: 'end' }}>
             <div>
               <div className="anim-fadeup"><Eyebrow>Portfolio</Eyebrow></div>
-              <h1 className="anim-fadeup d100" style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2.8rem,6vw,4.5rem)', fontWeight: 400, lineHeight: 1.05, letterSpacing: '-.03em', marginTop: 16 }}>
-                Selected<br /><em style={{ color: 'var(--accent)' }}>Work.</em>
+              <h1 className="anim-fadeup d100" style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.6rem,4vw,2.8rem)', fontWeight: 400, lineHeight: 1.05, letterSpacing: '-.03em', marginTop: 16 }}>
+                Selected <em style={{ color: 'var(--accent)', fontStyle: 'normal' }}>work.</em>
               </h1>
               <p className="anim-fadeup d200" style={{ fontSize: '1.05rem', color: 'var(--ink-2)', marginTop: 20, lineHeight: 1.7, maxWidth: 500 }}>
                 Projects spanning fitness technology, SaaS, wellness, and government — each a story from problem to elegant solution.

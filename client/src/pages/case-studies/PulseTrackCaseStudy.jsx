@@ -45,9 +45,8 @@ export default function PulseTrackCaseStudy({ project = PROJECTS[0] }) {
           </button>
 
           <div className="anim-fadeup"><Eyebrow>Case study · {project.num}</Eyebrow></div>
-          <h1 className="anim-fadeup d100" style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2.8rem,6vw,4.5rem)', fontWeight: 400, lineHeight: 1.05, letterSpacing: '-.03em', marginTop: 16 }}>
-            {project.title.split('—')[0].trim()}<br />
-            <em style={{ color: 'var(--accent)' }}>{project.title.split('—')[1]?.trim() || ''}</em>
+          <h1 className="anim-fadeup d100" style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.6rem,4vw,2.8rem)', fontWeight: 400, lineHeight: 1.05, letterSpacing: '-.03em', marginTop: 16 }}>
+            {project.title.split('—')[0].trim()} <em style={{ color: 'var(--accent)', fontStyle: 'normal' }}>{project.title.split('—')[1]?.trim() || ''}</em>
           </h1>
 
           <div className="anim-fadeup d200" style={{ display: 'flex', flexWrap: 'wrap', gap: 16, marginTop: 24, paddingTop: 24, borderTop: '1px solid var(--border)' }}>
@@ -219,8 +218,8 @@ export default function PulseTrackCaseStudy({ project = PROJECTS[0] }) {
 
       {/* ── IMPACT ── */}
       <CsSection eyebrow="Impact">
-        <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.8rem,3.5vw,2.8rem)', fontWeight: 400, marginTop: 16, marginBottom: 36, letterSpacing: '-.02em' }}>
-          The numbers <em style={{ color: 'var(--accent)' }}>tell the story.</em>
+        <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.6rem,4vw,2.8rem)', fontWeight: 400, marginTop: 16, marginBottom: 36, letterSpacing: '-.02em' }}>
+          The numbers <em style={{ color: 'var(--accent)', fontStyle: 'normal' }}>tell the story.</em>
         </h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(200px,1fr))', gap: 14 }}>
           {[['67%','Increase in 30-day retention'],['4.8★','App Store rating (from 3.9)'],['−78%','Onboarding drop-off rate']].map(([n, l]) => (

@@ -68,8 +68,8 @@ export default function ContactPage() {
           {/* Header */}
           <div style={{ maxWidth: 580, marginBottom: 56 }}>
             <div className="anim-fadeup"><Eyebrow>Get in touch</Eyebrow></div>
-            <h1 className="anim-fadeup d100" style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2.8rem,6vw,4.5rem)', fontWeight: 400, lineHeight: 1.05, letterSpacing: '-.03em', marginTop: 16 }}>
-              Let's build <em style={{ color: 'var(--accent)' }}>something</em><br />great together.
+            <h1 className="anim-fadeup d100" style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.6rem,4vw,2.8rem)', fontWeight: 400, lineHeight: 1.05, letterSpacing: '-.03em', marginTop: 16 }}>
+              Let's build <em style={{ color: 'var(--accent)', fontStyle: 'normal' }}>something</em> great together.
             </h1>
             <p className="anim-fadeup d200" style={{ fontSize: '1.05rem', color: 'var(--ink-2)', marginTop: 20, lineHeight: 1.72 }}>
               Building from scratch, refining an existing product, or looking for a long-term design partner — I'd love to hear from you.

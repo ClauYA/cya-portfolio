@@ -46,8 +46,8 @@ export default function AboutPage() {
               {/* Intro */}
               <div>
                 <div className="anim-fadeup"><Eyebrow>My story</Eyebrow></div>
-                <h1 className="anim-fadeup d100" style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2.8rem,6vw,4.5rem)', fontWeight: 400, lineHeight: 1.05, letterSpacing: '-.03em', marginTop: 16 }}>
-                  Designing with<br /><em style={{ color: 'var(--accent)' }}>purpose.</em>
+                <h1 className="anim-fadeup d100" style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.6rem,4vw,2.8rem)', fontWeight: 400, lineHeight: 1.05, letterSpacing: '-.03em', marginTop: 16 }}>
+                  Designing with <em style={{ color: 'var(--accent)', fontStyle: 'normal' }}>purpose.</em>
                 </h1>
                 <p className="anim-fadeup d200" style={{ fontSize: '1.05rem', color: 'var(--ink-2)', marginTop: 20, lineHeight: 1.72, maxWidth: 600 }}>
                   I'm a Designer and Frontend Developer with a full-stack foundation — I design with the backend in mind, understanding what is buildable, scalable, and consistent across platforms.
