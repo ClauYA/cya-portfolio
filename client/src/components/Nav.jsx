@@ -5,17 +5,21 @@ import Btn          from './ui/Btn';
 import ResumeBtn    from './ui/ResumeBtn';
 
 export default function Nav() {
-  const { page, setPage, theme, setTheme } = useContext(AppCtx);
+  const { page, setPage, theme, lang, setLang } = useContext(AppCtx);
   const scrollY = useScroll();
   const [drawer, setDrawer] = useState(false);
   const stuck = scrollY > 20;
 
+  const L = lang === 'es'
+    ? { home: 'Inicio', projects: 'Proyectos', about: 'Sobre mí', services: 'Servicios', contact: 'Contacto', talk: 'Hablemos →' }
+    : { home: 'Home', projects: 'Projects', about: 'About', services: 'Services', contact: 'Contact', talk: "Let's Talk →" };
+
   const links = [
-    { id: 'home',     label: 'Home'     },
-    { id: 'projects', label: 'Projects' },
-    { id: 'about',    label: 'About'    },
-    { id: 'services', label: 'Services' },
-    { id: 'contact',  label: 'Contact'  },
+    { id: 'home',     label: L.home     },
+    { id: 'projects', label: L.projects },
+    { id: 'about',    label: L.about    },
+    { id: 'services', label: L.services },
+    { id: 'contact',  label: L.contact  },
   ];
 
   const navLink = (id, label, mobile) => {
@@ -79,13 +83,15 @@ export default function Nav() {
           {/* Actions */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <button
-              onClick={() => setTheme(t => t === 'light' ? 'dark' : 'light')}
-              style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--bg-inset)', border: '1px solid var(--border)', color: 'var(--ink-2)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', transition: 'all .2s', fontSize: '0.9rem' }}
+              onClick={() => setLang(l => l === 'en' ? 'es' : 'en')}
+              title={lang === 'en' ? 'Ver en español' : 'View in English'}
+              aria-label={lang === 'en' ? 'Ver en español' : 'View in English'}
+              style={{ height: 36, padding: '0 12px', borderRadius: 18, background: 'var(--bg-inset)', border: '1px solid var(--border)', color: 'var(--ink-2)', display: 'flex', alignItems: 'center', gap: 5, cursor: 'pointer', transition: 'all .2s', fontSize: '0.72rem', fontWeight: 700, letterSpacing: '.05em' }}
               onMouseEnter={e => { e.currentTarget.style.background = 'var(--bg-muted)'; e.currentTarget.style.color = 'var(--ink)'; }}
               onMouseLeave={e => { e.currentTarget.style.background = 'var(--bg-inset)'; e.currentTarget.style.color = 'var(--ink-2)'; }}>
-              {theme === 'dark' ? '☀️' : '🌙'}
+              🌐 {lang === 'en' ? 'ES' : 'EN'}
             </button>
-            <Btn variant="accent" size="sm" className="nav-cta-btn" onClick={() => setPage('contact')}>Let's Talk →</Btn>
+            <Btn variant="accent" size="sm" className="nav-cta-btn" onClick={() => setPage('contact')}>{L.talk}</Btn>
             <button
               className="nav-burger"
               style={{ display: 'none', width: 36, height: 36, borderRadius: 8, background: 'var(--bg-inset)', border: '1px solid var(--border)', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 5, cursor: 'pointer' }}
@@ -108,7 +114,7 @@ export default function Nav() {
       }}>
         {links.map(l => navLink(l.id, l.label, true))}
         <div style={{ marginTop: 24, display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <Btn variant="accent" onClick={() => { setPage('contact'); setDrawer(false); }} fullWidth>Let's Talk →</Btn>
+          <Btn variant="accent" onClick={() => { setPage('contact'); setDrawer(false); }} fullWidth>{L.talk}</Btn>
           <ResumeBtn size="md" style={{ justifyContent: 'center', width: '100%' }} />
         </div>
       </div>

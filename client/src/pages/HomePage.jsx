@@ -18,16 +18,14 @@ import ProjectCard   from '../components/blocks/ProjectCard';
 //import { SKILLS } from '../data/skills';
 
 // Frases del titular animado (typewriter)
-const HERO_PHRASES = [
-  'Claudia Bittner',
-  'Product Design',
-  'Human-Centered Design',
-  'detail driven interfaces',
-  'Interaction Design',
-];
+const HERO_PHRASES = {
+  en: ['Claudia Bittner', 'Product Designer', 'Web Developer', 'I design and build', 'end-to-end products'],
+  es: ['Claudia Bittner', 'Diseñadora de Producto', 'Desarrolladora Web', 'Diseño y construyo', 'productos de punta a punta'],
+};
 
 export default function HomePage() {
-  const { setPage, setCaseProject } = useContext(AppCtx);
+  const { setPage, setCaseProject, lang } = useContext(AppCtx);
+  const es = lang === 'es';
   const openProject = useCallback((p) => {
     if (p.id === 'mining-royalties') { setPage('mining'); }
     else { setCaseProject(p); setPage('casestudy'); }
@@ -58,22 +56,27 @@ export default function HomePage() {
 
             <div style={{ width: '100%' }}>
                <div className="anim-fadeup" style={{ display: 'flex', alignItems: 'right', justifyContent: 'right', gap: 14, marginBottom: 32, flexWrap: 'wrap' }}>
-                <AvailDot />
-                <Tag>US Location</Tag>
-          </div> 
+                <AvailDot text={es ? 'Disponible para proyectos o full-time' : 'Available for projects or full-time'} />
+                <Tag>{es ? 'Ubicación: EE. UU.' : 'US Location'}</Tag>
+          </div>
               {/* Titular animado: efecto máquina de escribir */}
-              <h1 className="anim-fadeup d100 typewriter-heading" aria-label="Claudia Yupanqui — Product & UX/UI Designer" style={{ marginBottom: 20, minHeight: '1.25em' }}>
-                <Typewriter phrases={HERO_PHRASES} />
+              <h1 className="anim-fadeup d100 typewriter-heading" aria-label="Claudia Bittner — Product Designer & Web Developer" style={{ marginBottom: 20, minHeight: '1.25em' }}>
+                <Typewriter phrases={HERO_PHRASES[lang] || HERO_PHRASES.en} />
               </h1>
-              <p className="anim-fadeup d200" style={{ fontSize: 'clamp(1rem,1.8vw,1.2rem)', color: 'var(--ink-2)', lineHeight: 1.72, maxWidth: 560, margin: '0 auto 40px' }}>
-                I design interfaces that are minimal, approachable, and aligned with user needs. My goal is to build experiences that feel professional, friendly, and easy to trust.
+              <p className="anim-fadeup d200" style={{ fontSize: 'clamp(1rem,1.8vw,1.2rem)', color: 'var(--ink-2)', lineHeight: 1.72, maxWidth: 580, margin: '0 auto 40px' }}>
+                {es
+                  ? 'Soy diseñadora de producto y desarrolladora web. Llevo los productos desde el primer wireframe hasta código responsivo en producción — y cuando un equipo solo necesita el diseño, también lo hago. La misma dedicación, en ambos casos.'
+                  : "I'm a product designer and web developer. I take products from the first wireframe to live, responsive code — and when a team just needs the design, I do that too. Same craft, either way."}
               </p>
               <div className="anim-fadeup d300" style={{ display: 'flex', justifyContent: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 48 }}>
-                <Btn variant="solid" size="lg" onClick={() => setPage('projects')}>View Projects →</Btn>
-                <Btn variant="outline" size="lg" onClick={() => setPage('contact')}>Let's Work Together</Btn>
+                <Btn variant="solid" size="lg" onClick={() => setPage('projects')}>{es ? 'Ver proyectos →' : 'View Projects →'}</Btn>
+                <Btn variant="outline" size="lg" onClick={() => setPage('contact')}>{es ? 'Trabajemos juntos' : "Let's Work Together"}</Btn>
               </div>
               <div className="anim-fadeup d400" style={{ paddingTop: 32, borderTop: '1px solid var(--border)', display: 'flex', justifyContent: 'center', gap: 40, flexWrap: 'wrap' }}>
-                {[['3+','Years Experience'],['5+','Projects Shipped'],['100%','Client Satisfaction'],['3×','Avg Conversion Lift']].map(([n,l]) => (
+                {(es
+                  ? [['3+','Años de experiencia'],['5+','Proyectos entregados'],['100%','Diseño + Código'],['3×','Aumento promedio de conversión']]
+                  : [['3+','Years Experience'],['5+','Projects Shipped'],['100%','Design + Build'],['3×','Avg Conversion Lift']]
+                ).map(([n,l]) => (
                   <div key={l}>
                     <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.9rem,3vw,2.5rem)', fontWeight: 400, letterSpacing: '-.04em', color: 'var(--ink)', lineHeight: 1 }}>{n}</div>
                     <div style={{ fontSize: '0.72rem', color: 'var(--ink-3)', fontWeight: 500, marginTop: 3, letterSpacing: '.04em' }}>{l}</div>
@@ -89,12 +92,12 @@ export default function HomePage() {
       <Section>
         <Container>
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 56, flexWrap: 'wrap', gap: 20 }}>
-            <SectionHeader eyebrow="Selected work" heading={<>Projects that <em style={{ color: 'var(--accent)', fontStyle: 'normal' }}>drive results.</em></>} marginBottom={0} />
-            <Reveal delay={100}><Btn variant="outline" onClick={() => setPage('projects')}>View all projects →</Btn></Reveal>
+            <SectionHeader eyebrow={es ? 'Trabajo seleccionado' : 'Selected work'} heading={es ? <>Proyectos que <em style={{ color: 'var(--accent)', fontStyle: 'normal' }}>generan resultados.</em></> : <>Projects that <em style={{ color: 'var(--accent)', fontStyle: 'normal' }}>drive results.</em></>} marginBottom={0} />
+            <Reveal delay={100}><Btn variant="outline" onClick={() => setPage('projects')}>{es ? 'Ver todos los proyectos →' : 'View all projects →'}</Btn></Reveal>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
             {PROJECTS.slice(0, 3).map((p, i) => (
-              <ProjectCard key={p.id} project={p} layout={p.featured ? 'featured' : i % 2 === 0 ? 'normal' : 'alt'} onOpen={() => openProject(p)} delay={i * 80} />
+              <ProjectCard key={p.id} project={p} layout={p.featured ? 'featured' : i % 2 === 0 ? 'alt' : 'normal'} onOpen={() => openProject(p)} delay={i * 80} />
             ))}
           </div>
         </Container>
@@ -106,16 +109,18 @@ export default function HomePage() {
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 4, background: 'linear-gradient(90deg, var(--accent), var(--sage))', opacity: 0.35 }} />
         <Container style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
           <div style={{ maxWidth: 600, margin: '0 auto' }}>
-            <Reveal><Eyebrow center>Ready when you are</Eyebrow></Reveal>
+            <Reveal><Eyebrow center>{es ? 'Cuando quieras' : 'Ready when you are'}</Eyebrow></Reveal>
             <Reveal delay={100}>
               <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.6rem,4vw,2.8rem)', fontWeight: 400, lineHeight: 1.1, letterSpacing: '-.02em', marginTop: 16 }}>
-                Let's build experiences <em style={{ color: 'var(--accent)', fontStyle: 'normal' }}>people remember.</em>
+                {es
+                  ? <>Construyamos experiencias <em style={{ color: 'var(--accent)', fontStyle: 'normal' }}>que la gente recuerde.</em></>
+                  : <>Let's build experiences <em style={{ color: 'var(--accent)', fontStyle: 'normal' }}>people remember.</em></>}
               </h2>
             </Reveal>
-            <Reveal delay={200}><p style={{ fontSize: '1.05rem', color: 'var(--ink-2)', marginTop: 16, lineHeight: 1.7 }}>Whether you're a startup, a fitness brand, or a bold founder — let's create something extraordinary together.</p></Reveal>
+            <Reveal delay={200}><p style={{ fontSize: '1.05rem', color: 'var(--ink-2)', marginTop: 16, lineHeight: 1.7 }}>{es ? 'Ya seas una startup, una marca de fitness o un fundador con visión — creemos algo extraordinario juntos.' : "Whether you're a startup, a fitness brand, or a bold founder — let's create something extraordinary together."}</p></Reveal>
             <Reveal delay={300}>
               <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap', marginTop: 36 }}>
-                <Btn variant="accent" size="lg" onClick={() => setPage('contact')}>Start a project →</Btn>
+                <Btn variant="accent" size="lg" onClick={() => setPage('contact')}>{es ? 'Iniciar un proyecto →' : 'Start a project →'}</Btn>
                 <Btn variant="outline" size="lg" href="mailto:info@yaczoe.com">info@yaczoe.com</Btn>
               </div>
             </Reveal>
@@ -124,7 +129,7 @@ export default function HomePage() {
                 {[
                   ['💼','LinkedIn',   'https://www.linkedin.com/in/claudia-ya/'],
                   ['🎨','Dribbble',   'https://dribbble.com/cya'],
-                  ['📅','Book a call','https://calendly.com/cyabittner/30min'],
+                  ['📅', es ? 'Agendar llamada' : 'Book a call','https://calendly.com/cyabittner/30min'],
                 ].map(([icon, label, href]) => (
                   <a key={label} href={href} target="_blank" rel="noopener noreferrer"
                     style={{ display: 'flex', alignItems: 'center', gap: 7, padding: '7px 16px', borderRadius: 9999, background: 'var(--bg-card)', border: '1px solid var(--border-m)', fontSize: '0.85rem', fontWeight: 500, color: 'var(--ink-2)', transition: 'all .2s' }}

@@ -5,6 +5,7 @@ export const AppCtx = createContext({});
 export function AppProvider({ children }) {
   const [page,         setPage]         = useState('home');
   const [theme,        setTheme]        = useState('light');
+  const [lang,         setLang]         = useState('en');   // 'en' | 'es'
   const [caseProject,  setCaseProject]  = useState(null);
 
   useEffect(() => {
@@ -16,7 +17,7 @@ export function AppProvider({ children }) {
   }, [page]);
 
   return (
-    <AppCtx.Provider value={{ page, setPage, theme, setTheme, caseProject, setCaseProject }}>
+    <AppCtx.Provider value={{ page, setPage, theme, setTheme, lang, setLang, caseProject, setCaseProject }}>
       {children}
     </AppCtx.Provider>
   );

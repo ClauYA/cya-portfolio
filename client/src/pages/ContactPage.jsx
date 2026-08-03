@@ -9,7 +9,8 @@ import Section   from '../components/ui/Section';
 import Footer    from '../components/Footer';
 
 export default function ContactPage() {
-  const { setPage } = useContext(AppCtx);
+  const { setPage, lang } = useContext(AppCtx);
+  const es = lang === 'es';
 
   const [submitted, setSubmitted] = useState(false);
   const [loading,   setLoading]   = useState(false);
@@ -41,11 +42,11 @@ export default function ContactPage() {
       if (data.success) {
         setSubmitted(true);
       } else {
-        alert('Something went wrong. Please try again.');
+        alert(es ? 'Algo salió mal. Por favor intenta de nuevo.' : 'Something went wrong. Please try again.');
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('Could not connect. Please email me directly.');
+      alert(es ? 'No se pudo conectar. Por favor escríbeme directamente.' : 'Could not connect. Please email me directly.');
     } finally {
       setLoading(false);
     }
@@ -67,12 +68,16 @@ export default function ContactPage() {
         <Container>
           {/* Header */}
           <div style={{ maxWidth: 580, marginBottom: 56 }}>
-            <div className="anim-fadeup"><Eyebrow>Get in touch</Eyebrow></div>
+            <div className="anim-fadeup"><Eyebrow>{es ? 'Conversemos' : 'Get in touch'}</Eyebrow></div>
             <h1 className="anim-fadeup d100" style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.6rem,4vw,2.8rem)', fontWeight: 400, lineHeight: 1.05, letterSpacing: '-.03em', marginTop: 16 }}>
-              Let's build <em style={{ color: 'var(--accent)', fontStyle: 'normal' }}>something</em> great together.
+              {es
+                ? <>Construyamos <em style={{ color: 'var(--accent)', fontStyle: 'normal' }}>algo</em> grande juntos.</>
+                : <>Let's build <em style={{ color: 'var(--accent)', fontStyle: 'normal' }}>something</em> great together.</>}
             </h1>
             <p className="anim-fadeup d200" style={{ fontSize: '1.05rem', color: 'var(--ink-2)', marginTop: 20, lineHeight: 1.72 }}>
-              Building from scratch, refining an existing product, or looking for a long-term design partner — I'd love to hear from you.
+              {es
+                ? 'Ya sea construir desde cero, pulir un producto existente o buscar una socia de diseño a largo plazo — me encantaría saber de ti.'
+                : "Building from scratch, refining an existing product, or looking for a long-term design partner — I'd love to hear from you."}
             </p>
           </div>
 
@@ -95,7 +100,7 @@ export default function ContactPage() {
                 ['✉️', 'Email',             'info@yaczoe.com',                 'mailto:info@yaczoe.com'],
                 ['💼', 'LinkedIn',          'linkedin.com/in/claudia-ya',      'https://www.linkedin.com/in/claudia-ya/'],
                 ['🎨', 'Dribbble',          'dribbble.com/cya',                'https://dribbble.com/cya'],
-                ['📅', 'Book a 30-min call','Calendly · Free discovery call',  'https://calendly.com/cyabittner/30min'],
+                ['📅', es ? 'Agenda una llamada de 30 min' : 'Book a 30-min call', es ? 'Calendly · Llamada de descubrimiento gratis' : 'Calendly · Free discovery call',  'https://calendly.com/cyabittner/30min'],
               ].map(([icon, label, val, href], i) => (
                 <Reveal key={label} delay={i * 60}>
                   <a href={href}
@@ -117,7 +122,7 @@ export default function ContactPage() {
               <Reveal delay={280}>
                 <div style={{ padding: '16px 20px', borderRadius: 14, background: 'var(--sage-s)', border: '1px solid var(--sage-g)', display: 'flex', alignItems: 'center', gap: 12 }}>
                   <div>
-                    <div style={{ fontSize: '0.8rem', color: 'var(--ink-2)' }}>Accepting new projects for Q3 2026. Response within 24h.</div>
+                    <div style={{ fontSize: '0.8rem', color: 'var(--ink-2)' }}>{es ? 'Acepto nuevos proyectos para el Q3 2026. Respondo en menos de 24 h.' : 'Accepting new projects for Q3 2026. Response within 24h.'}</div>
                   </div>
                 </div>
               </Reveal>
@@ -126,19 +131,19 @@ export default function ContactPage() {
             {/* ── Formulario — siempre segundo ── */}
             <Reveal delay={100} direction={isMobile ? 'up' : 'right'} style={{ width: isMobile ? '100%' : undefined, flex: isMobile ? undefined : 1, order: 2 }}>
               <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 22, padding: 'clamp(24px,4vw,44px)', boxShadow: 'var(--sh-lg)' }}>
-                <h3 style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: 4 }}>Send a message</h3>
-                <p style={{ fontSize: '0.82rem', color: 'var(--ink-3)', marginBottom: 28 }}>Tell me about your project and I'll get back to you shortly.</p>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: 4 }}>{es ? 'Envía un mensaje' : 'Send a message'}</h3>
+                <p style={{ fontSize: '0.82rem', color: 'var(--ink-3)', marginBottom: 28 }}>{es ? 'Cuéntame sobre tu proyecto y te respondo pronto.' : "Tell me about your project and I'll get back to you shortly."}</p>
 
                 {submitted ? (
                   <div style={{ textAlign: 'center', padding: '48px 20px' }}>
                     <div style={{ fontSize: '3rem', marginBottom: 16 }}>✅</div>
-                    <div style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: 8 }}>Message sent!</div>
-                    <p style={{ fontSize: '0.875rem', color: 'var(--ink-2)' }}>I'll get back to you within 24 hours.</p>
+                    <div style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: 8 }}>{es ? '¡Mensaje enviado!' : 'Message sent!'}</div>
+                    <p style={{ fontSize: '0.875rem', color: 'var(--ink-2)' }}>{es ? 'Te respondo dentro de las próximas 24 horas.' : "I'll get back to you within 24 hours."}</p>
                   </div>
                 ) : (
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
-                      {[['First name','firstName','Jane'],['Last name','lastName','Smith']].map(([l, field, p]) => (
+                      {(es ? [['Nombre','firstName','Ana'],['Apellido','lastName','Pérez']] : [['First name','firstName','Jane'],['Last name','lastName','Smith']]).map(([l, field, p]) => (
                         <div key={l}>
                           <label style={{ fontSize: '0.72rem', fontWeight: 600, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--ink-2)', display: 'block', marginBottom: 6 }}>{l}</label>
                           <input placeholder={p} value={formData[field]} onChange={handleChange(field)} style={inputStyle} onFocus={focusInput} onBlur={blurInput} />
@@ -146,10 +151,16 @@ export default function ContactPage() {
                       ))}
                     </div>
 
-                    {[
-                      ['Email address',         'email',   'jane@company.com',        'email'],
-                      ['Company / Project type', 'company', 'e.g. Fitness App Startup','text'],
-                    ].map(([l, field, p, type]) => (
+                    {(es
+                      ? [
+                          ['Correo electrónico',    'email',   'ana@empresa.com',              'email'],
+                          ['Empresa / Tipo de proyecto', 'company', 'ej. Startup de app de fitness', 'text'],
+                        ]
+                      : [
+                          ['Email address',         'email',   'jane@company.com',        'email'],
+                          ['Company / Project type', 'company', 'e.g. Fitness App Startup','text'],
+                        ]
+                    ).map(([l, field, p, type]) => (
                       <div key={l}>
                         <label style={{ fontSize: '0.72rem', fontWeight: 600, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--ink-2)', display: 'block', marginBottom: 6 }}>{l}</label>
                         <input type={type} placeholder={p} value={formData[field]} onChange={handleChange(field)} style={inputStyle} onFocus={focusInput} onBlur={blurInput} />
@@ -157,20 +168,23 @@ export default function ContactPage() {
                     ))}
 
                     <div>
-                      <label style={{ fontSize: '0.72rem', fontWeight: 600, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--ink-2)', display: 'block', marginBottom: 6 }}>Budget range</label>
+                      <label style={{ fontSize: '0.72rem', fontWeight: 600, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--ink-2)', display: 'block', marginBottom: 6 }}>{es ? 'Rango de presupuesto' : 'Budget range'}</label>
                       <select value={formData.budget} onChange={handleChange('budget')} style={inputStyle} onFocus={focusInput} onBlur={blurInput}>
-                        <option value="">Select a range</option>
-                        {['Under $5,000','$5,000 – $15,000','$15,000 – $30,000','$30,000+','Let\'s discuss'].map(o => <option key={o}>{o}</option>)}
+                        <option value="">{es ? 'Selecciona un rango' : 'Select a range'}</option>
+                        {(es
+                          ? ['Menos de $5,000','$5,000 – $15,000','$15,000 – $30,000','$30,000+','Conversémoslo']
+                          : ['Under $5,000','$5,000 – $15,000','$15,000 – $30,000','$30,000+','Let\'s discuss']
+                        ).map(o => <option key={o}>{o}</option>)}
                       </select>
                     </div>
 
                     <div>
-                      <label style={{ fontSize: '0.72rem', fontWeight: 600, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--ink-2)', display: 'block', marginBottom: 6 }}>Tell me about your project</label>
-                      <textarea placeholder="What are you building? What problem needs solving? What's the timeline?" rows={4} value={formData.message} onChange={handleChange('message')} style={{ ...inputStyle, resize: 'vertical' }} onFocus={focusInput} onBlur={blurInput} />
+                      <label style={{ fontSize: '0.72rem', fontWeight: 600, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--ink-2)', display: 'block', marginBottom: 6 }}>{es ? 'Cuéntame sobre tu proyecto' : 'Tell me about your project'}</label>
+                      <textarea placeholder={es ? '¿Qué estás construyendo? ¿Qué problema hay que resolver? ¿Cuál es el plazo?' : "What are you building? What problem needs solving? What's the timeline?"} rows={4} value={formData.message} onChange={handleChange('message')} style={{ ...inputStyle, resize: 'vertical' }} onFocus={focusInput} onBlur={blurInput} />
                     </div>
 
                     <Btn variant="accent" fullWidth onClick={handleSubmit}>
-                      {loading ? 'Sending...' : 'Send message →'}
+                      {loading ? (es ? 'Enviando...' : 'Sending...') : (es ? 'Enviar mensaje →' : 'Send message →')}
                     </Btn>
                   </div>
                 )}

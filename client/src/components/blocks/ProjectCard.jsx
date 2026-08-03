@@ -16,15 +16,29 @@ export default function ProjectCard({ project, layout = 'normal', onOpen, delay 
       flex: !isFeat ? '0 0 300px' : undefined,
       order: isAlt ? 2 : 0,
     }}>
-      <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(var(--border-m) 1px, transparent 1px)', backgroundSize: '18px 18px', opacity: 0.5 }} />
-      <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(3.5rem,7vw,5.5rem)', fontWeight: 400, color: hov ? 'var(--accent)' : 'var(--bg-muted)', letterSpacing: '-.05em', transition: 'color .3s, transform .4s cubic-bezier(.34,1.56,.64,1)', transform: hov ? 'scale(1.1)' : 'none', position: 'relative', zIndex: 1 }}>{project.num}</div>
-      <div style={{ position: 'absolute', top: 14, left: 14 }}><Tag variant={project.tagStyle}>{project.tag}</Tag></div>
-      <div style={{ position: 'absolute', bottom: 14, right: 14, fontSize: '0.72rem', color: 'var(--ink-3)', fontWeight: 500 }}>{project.year}</div>
+      {project.image ? (
+        <img src={project.image} alt={project.title}
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center', padding: 12, transition: 'transform .4s cubic-bezier(.34,1.56,.64,1)', transform: hov ? 'scale(1.03)' : 'none' }} />
+      ) : (
+        <>
+          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(var(--border-m) 1px, transparent 1px)', backgroundSize: '18px 18px', opacity: 0.5 }} />
+          <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(3.5rem,7vw,5.5rem)', fontWeight: 400, color: hov ? 'var(--accent)' : 'var(--bg-muted)', letterSpacing: '-.05em', transition: 'color .3s, transform .4s cubic-bezier(.34,1.56,.64,1)', transform: hov ? 'scale(1.1)' : 'none', position: 'relative', zIndex: 1 }}>{project.num}</div>
+        </>
+      )}
+      <div style={{ position: 'absolute', top: 14, left: 14, zIndex: 2 }}><Tag variant={project.tagStyle}>{project.tag}</Tag></div>
+      <div style={{ position: 'absolute', bottom: 14, right: 14, fontSize: '0.72rem', color: 'var(--ink-3)', fontWeight: 500, zIndex: 2 }}>{project.year}</div>
     </div>
   );
 
   const body = (
     <div style={{ padding: 'clamp(24px,3vw,36px)', display: 'flex', flexDirection: 'column', gap: 16, flex: 1, order: isAlt ? 1 : 0 }}>
+      {project.badge && (
+        <span style={{
+          alignSelf: 'flex-start', display: 'inline-flex', alignItems: 'center', padding: '4px 12px', borderRadius: 9999,
+          background: /web|dev|build/i.test(project.badge) ? 'var(--accent)' : 'var(--ink)',
+          color: '#fff', fontSize: '0.64rem', fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase',
+        }}>{project.badge}</span>
+      )}
       <div style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '.1em' }}>{project.cat}</div>
       <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.4rem,2.5vw,2rem)', lineHeight: 1.15, letterSpacing: '-.015em', color: 'var(--ink)' }}>{project.title}</div>
       <p style={{ fontSize: '0.875rem', color: 'var(--ink-2)', lineHeight: 1.65 }}>{project.summary}</p>
@@ -40,7 +54,7 @@ export default function ProjectCard({ project, layout = 'normal', onOpen, delay 
         {project.tools.map(t => <Tag key={t}>{t}</Tag>)}
       </div>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 16, borderTop: '1px solid var(--border)', marginTop: 'auto' }}>
-        {project.featured ? <Tag variant="accent">Read case study</Tag> : <span style={{ fontSize: '0.72rem', color: 'var(--ink-3)' }}>{project.duration} · {project.year}</span>}
+        <Tag variant="accent">Read case study</Tag>
         <div style={{ width: 34, height: 34, borderRadius: '50%', background: hov ? 'var(--accent)' : 'var(--bg-inset)', border: `1px solid ${hov ? 'var(--accent)' : 'var(--border)'}`, color: hov ? '#fff' : 'var(--ink-2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem', transition: 'all .22s' }}>↗</div>
       </div>
     </div>
