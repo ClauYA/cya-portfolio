@@ -117,6 +117,7 @@ function DiagramCarousel({ items, onExpand, maxWidth = 760, height = 360 }) {
 
 export default function MiningCaseStudy() {
   const [lightbox, setLightbox] = useState(null);
+  const [protoFull, setProtoFull] = useState(false);
   const { setPage } = useContext(AppCtx);
   const readingPct  = useReadingProgress();
 
@@ -165,6 +166,23 @@ export default function MiningCaseStudy() {
   return (
     <div style={{ paddingTop: 68 }}>
       <Lightbox/>
+      {protoFull && (
+        <div style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,0.92)', display: 'flex', flexDirection: 'column', padding: 'clamp(16px,3vw,40px)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
+            <div style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.85rem', fontWeight: 500 }}>Mining Royalties — interactive prototype</div>
+            <button type="button" aria-label="Cerrar" onClick={() => setProtoFull(false)}
+              style={{ background: 'none', border: 'none', color: '#fff', fontSize: '2rem', cursor: 'pointer', lineHeight: 1 }}>×</button>
+          </div>
+          <div style={{ flex: 1, borderRadius: 12, overflow: 'hidden', border: '1px solid rgba(255,255,255,0.15)', background: '#000' }}>
+            <iframe
+              title="Mining Royalties — interactive prototype (fullscreen)"
+              src={figmaEmbedSrc(OVERVIEW_PROTO_URL)}
+              style={{ width: '100%', height: '100%', border: 'none', display: 'block' }}
+              allowFullScreen
+            />
+          </div>
+        </div>
+      )}
       <div className="reading-progress-bar">
         <div className="reading-progress-fill" style={{ width: `${readingPct}%` }} />
       </div>
@@ -213,13 +231,18 @@ export default function MiningCaseStudy() {
             </p>
           </div>
           {OVERVIEW_PROTO_URL ? (
-            <div style={{ borderRadius: 16, overflow: 'hidden', border: '1px solid var(--border)', background: 'var(--bg-inset)', aspectRatio: '4 / 3' }}>
+            <div style={{ position: 'relative', borderRadius: 16, overflow: 'hidden', border: '1px solid var(--border)', background: 'var(--bg-inset)', aspectRatio: '4 / 3' }}>
               <iframe
                 title="Mining Royalties — interactive prototype"
                 src={figmaEmbedSrc(OVERVIEW_PROTO_URL)}
                 style={{ width: '100%', height: '100%', border: 'none', display: 'block' }}
                 allowFullScreen
               />
+              <button type="button" aria-label="Ampliar prototipo" title="Ampliar"
+                onClick={() => setProtoFull(true)}
+                style={{ position: 'absolute', top: 10, right: 10, width: 36, height: 36, borderRadius: 9, background: 'var(--bg-glass)', backdropFilter: 'blur(8px)', border: '1px solid var(--border)', color: 'var(--ink)', fontSize: '1rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: 'var(--sh-sm)', zIndex: 2, transition: 'all .2s' }}
+                onMouseEnter={e => { e.currentTarget.style.background = 'var(--accent)'; e.currentTarget.style.color = '#fff'; }}
+                onMouseLeave={e => { e.currentTarget.style.background = 'var(--bg-glass)'; e.currentTarget.style.color = 'var(--ink)'; }}>⤢</button>
             </div>
           ) : (
             <div style={{ borderRadius: 16, overflow: 'hidden', border: '1px solid var(--border)', background: 'var(--bg-inset)', cursor: 'zoom-in' }}
