@@ -1,4 +1,4 @@
-import { useContext,useState } from 'react';
+import { useContext,useState,useEffect } from 'react';
 import { AppCtx }    from '../../context/AppContext';
 import useReadingProgress from '../../hooks/useReadingProgress';
 
@@ -118,6 +118,12 @@ function DiagramCarousel({ items, onExpand, maxWidth = 760, height = 360 }) {
 export default function MiningCaseStudy() {
   const [lightbox, setLightbox] = useState(null);
   const [protoFull, setProtoFull] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  useEffect(() => {
+    const fn = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', fn);
+    return () => window.removeEventListener('resize', fn);
+  }, []);
   const { setPage } = useContext(AppCtx);
   const readingPct  = useReadingProgress();
 
@@ -221,7 +227,7 @@ export default function MiningCaseStudy() {
 
       {/* ── OVERVIEW ── */}
       <CsSection eyebrow="Overview">
-        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 48, alignItems: 'start', marginTop: 24 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'minmax(0,1fr) minmax(0,1fr)', gap: isMobile ? 28 : 48, alignItems: 'start', marginTop: 24 }}>
           <div>
             <p style={{ fontSize: '1rem', color: 'var(--ink-2)', lineHeight: 1.72, marginBottom: 16 }}>
               Bolivia's mining sector — a critical pillar of the national economy — has long relied on outdated, manual data management systems. This lack of digital infrastructure has created serious vulnerabilities: corruption, financial losses, and a 15–25% error rate in manual data entry that compromises institutional integrity across government agencies, mining cooperatives, and private companies.
@@ -273,7 +279,7 @@ export default function MiningCaseStudy() {
 
       {/* ── THE PROBLEM / THE SOLUTION ── */}
       <CsSection eyebrow="The Problem" sage>
-        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 48, alignItems: 'start', marginTop: 24 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'minmax(0,1fr) minmax(0,1fr)', gap: isMobile ? 32 : 48, alignItems: 'start', marginTop: 24 }}>
           {/* Problem */}
           <div>
             <p style={{ fontSize: '0.95rem', color: 'var(--ink-2)', lineHeight: 1.72, marginBottom: 20 }}>
@@ -333,7 +339,7 @@ export default function MiningCaseStudy() {
       <CsSection eyebrow="Research — What I did">
 
         {/* Franja 1 — Intro + hallazgo clave (2 columnas balanceadas) */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1.05fr) minmax(0,0.95fr)', gap: 48, marginTop: 24, alignItems: 'start' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'minmax(0,1.05fr) minmax(0,0.95fr)', gap: isMobile ? 28 : 48, marginTop: 24, alignItems: 'start' }}>
           <div>
             <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.4rem,2.2vw,1.9rem)', fontWeight: 400, marginBottom: 16 }}>Stakeholder interviews &amp; discovery.</h2>
             <p style={{ fontSize: '0.95rem', color: 'var(--ink-2)', lineHeight: 1.72 }}>Across the government's institutions and departments, I ran a qualitative discovery phase — stakeholder interviews paired with analysis of their existing forms, spreadsheets, and system documentation — to map the workflows, pain points, and mental models of each user group. These findings grounded every information-architecture and UI decision that followed.</p>
@@ -401,7 +407,7 @@ export default function MiningCaseStudy() {
       {/* ── INFORMATION ARCHITECTURE ── */}
       <CsSection eyebrow="Information Architecture" sage>
         <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.5rem,2.5vw,2rem)', fontWeight: 400, marginTop: 16, marginBottom: 24 }}>Structuring a complex multi-stakeholder system.</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 48, alignItems: 'start' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'minmax(0,1fr) minmax(0,1fr)', gap: isMobile ? 28 : 48, alignItems: 'start' }}>
           <div>
             <p style={{ fontSize: '0.95rem', color: 'var(--ink-2)', lineHeight: 1.72, marginBottom: 20 }}>The platform needed to serve 3 very different user types with different goals, permissions, and technical comfort levels — all within a single system. I mapped out distinct user flows and navigation paths for each.</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -438,7 +444,7 @@ export default function MiningCaseStudy() {
         <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.5rem,2.5vw,2rem)', fontWeight: 400, marginTop: 16, marginBottom: 20 }}>Built for developers, not just designers.</h2>
         <p style={{ fontSize: '0.95rem', color: 'var(--ink-2)', lineHeight: 1.72, maxWidth: 680, marginBottom: 32 }}>Because I understand how Angular components are structured, I built the design system with developer handoff in mind — reusable patterns, clear naming conventions, and token-based decisions that mapped directly to the codebase.</p>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0,1fr))', gap: 14, marginBottom: 28 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(2, minmax(0,1fr))' : 'repeat(3, minmax(0,1fr))', gap: 14, marginBottom: 28 }}>
           {[
             ['🧱','Component Library','Reusable UI patterns for forms, tables, status badges, and navigation — consistent across all 3 user portals'],
             ['🎨','Design Tokens',    'Color, spacing, and typography tokens aligned with Angular implementation constraints'],
@@ -614,7 +620,7 @@ export default function MiningCaseStudy() {
         <Container>
           <Reveal><Eyebrow>Lessons learned</Eyebrow></Reveal>
           <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.4rem,2.2vw,1.9rem)', fontWeight: 400, marginTop: 16, marginBottom: 28 }}>What this project taught me.</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0,1fr))', gap: 14 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(2, minmax(0,1fr))' : 'repeat(4, minmax(0,1fr))', gap: 14 }}>
             {[
               ['01','Design systems need to speak developer',    'Building the DS with Angular component names in mind made the handoff seamless and reduced back-and-forth by design.'],
               ['02','IA is the hardest part of complex platforms','Getting the navigation right for 3 completely different user types required more iteration than any visual design decision.'],
