@@ -381,6 +381,44 @@ export default function MiningCaseStudy() {
           </div>
         </div>
 
+        {/* Franja 2b — Personas + Journey maps */}
+        <div style={{ marginTop: 56, paddingTop: 40, borderTop: '1px solid var(--border)' }}>
+          <div style={{ maxWidth: 720, marginBottom: 24 }}>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.3rem,2vw,1.7rem)', fontWeight: 400, marginBottom: 10 }}>Who we're designing for.</h2>
+            <p style={{ fontSize: '0.9rem', color: 'var(--ink-2)', lineHeight: 1.65 }}>
+              I synthesized the interviews into two primary personas — grounding every design decision in real goals, frustrations, and contexts rather than assumptions.
+            </p>
+          </div>
+          {/* Persona cards */}
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 16 }}>
+            {[
+              ['/persona-card-eduardo.png', 'Persona — Eduardo Duarte'],
+              ['/persona-card-maria.png',   'Persona — María Fernanda'],
+            ].map(([src, alt]) => (
+              <div key={alt} style={{ borderRadius: 14, overflow: 'hidden', border: '1px solid var(--border)', background: 'var(--bg-card)', cursor: 'zoom-in' }}
+                onClick={() => setLightbox({ src, alt })}>
+                <img src={src} alt={alt}
+                  style={{ width: '100%', height: 'auto', display: 'block', transition: 'transform 0.3s ease' }}
+                  onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.01)'}
+                  onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'} />
+              </div>
+            ))}
+          </div>
+          {/* Journey maps carousel */}
+          <div style={{ marginTop: 32 }}>
+            <div style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--sage)', textTransform: 'uppercase', letterSpacing: '.1em', marginBottom: 14 }}>User Journey Maps</div>
+            <DiagramCarousel
+              onExpand={setLightbox}
+              maxWidth={900}
+              height={isMobile ? 260 : 420}
+              items={[
+                ['/journey-map-eduardo-duarte.png', 'Journey map — Eduardo Duarte'],
+                ['/journey-map-maria-fernanda.png', 'Journey map — María Fernanda'],
+              ]}
+            />
+          </div>
+        </div>
+
         {/* Franja 3 — Sistema real del gobierno (carrusel a ancho completo) */}
         <div style={{ marginTop: 56, paddingTop: 40, borderTop: '1px solid var(--border)' }}>
           <div style={{ maxWidth: 720, marginBottom: 24 }}>
