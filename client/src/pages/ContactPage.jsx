@@ -112,7 +112,7 @@ export default function ContactPage() {
               </svg>,
               label: 'LinkedIn',
               value: 'linkedin.com/in/claudia-ya',
-              href: 'https://www.linkedin.com/in/claudia-ya/'
+              href: 'https://www.linkedin.com/in/claudiabittner'
             },
             { 
               icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="#181717">
