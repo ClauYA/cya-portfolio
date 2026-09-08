@@ -1,16 +1,22 @@
-import { useContext, useCallback } from 'react';
+import { useContext, useCallback, useState, useEffect } from 'react';
 import { AppCtx }      from '../context/AppContext';
 import { PROJECTS }    from '../data/projects';
 
 import Eyebrow     from '../components/ui/Eyebrow';
-//import Btn         from '../components/ui/Btn';
-//import Reveal      from '../components/ui/Reveal';
 import Container   from '../components/ui/Container';
 import Footer      from '../components/Footer';
 import ProjectCard from '../components/blocks/ProjectCard';
 
 export default function ProjectsPage() {
   const { setPage, setCaseProject } = useContext(AppCtx);
+
+  // Detectar móvil
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 700);
+  useEffect(() => {
+    const fn = () => setIsMobile(window.innerWidth <= 700);
+    window.addEventListener('resize', fn);
+    return () => window.removeEventListener('resize', fn);
+  }, []);
 
   const openProject = useCallback((p) => {
     if (p.id === 'mining-royalties') {
@@ -25,9 +31,16 @@ export default function ProjectsPage() {
     <div style={{ paddingTop: 68 }}>
       <section style={{ padding: 'clamp(64px,7vw,110px) 0 clamp(40px,5vw,64px)' }}>
         <Container>
-          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 360px', gap: 64, alignItems: 'end' }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: isMobile ? '1fr' : 'minmax(0,1fr) 360px',
+            gap: isMobile ? 40 : 64,
+            alignItems: 'end',
+          }}>
             <div>
-              <div className="anim-fadeup"><Eyebrow>Portfolio</Eyebrow></div>
+              <div className="anim-fadeup" style={{ justifyContent: isMobile ? 'center' : 'flex-start' }}>
+                <Eyebrow>Portfolio</Eyebrow>
+              </div>
               <h1 className="anim-fadeup d100" style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.6rem,4vw,2.8rem)', fontWeight: 400, lineHeight: 1.05, letterSpacing: '-.03em', marginTop: 16 }}>
                 Selected <em style={{ color: 'var(--accent)', fontStyle: 'normal' }}>work.</em>
               </h1>
@@ -35,22 +48,30 @@ export default function ProjectsPage() {
                 Projects spanning fitness technology, SaaS, wellness, and government — each a story from problem to elegant solution.
               </p>
             </div>
-            <div className="anim-fadeup d300" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              <div style={{ padding: '18px 20px', borderRadius: 14, background: 'var(--bg-card)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: 16 }}>
-                <span style={{ fontSize: '1.5rem' }}>🏆</span>
-                <div>
-                  <div style={{ fontSize: '0.875rem', fontWeight: 700 }}>5+ projects delivered</div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--ink-3)' }}>Across 3 years of practice</div>
-                </div>
-              </div>
-              <div style={{ padding: '18px 20px', borderRadius: 14, background: 'var(--bg-card)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: 16 }}>
-                <span style={{ fontSize: '1.5rem' }}>🎯</span>
-                <div>
-                  <div style={{ fontSize: '0.875rem', fontWeight: 700 }}>Specializing in</div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--ink-3)' }}>Fitness Tech · SaaS · Small Business · Government</div>
-                </div>
+         <div className="anim-fadeup d300" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <div style={{ padding: '18px 20px', borderRadius: 14, background: 'var(--bg-card)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: 16 }}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <div>
+                <div style={{ fontSize: '0.875rem', fontWeight: 700 }}>5+ projects delivered</div>
+                <div style={{ fontSize: '0.8rem', color: 'var(--ink-3)' }}>Across 3 years of practice</div>
               </div>
             </div>
+            <div style={{ padding: '18px 20px', borderRadius: 14, background: 'var(--bg-card)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: 16 }}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                <polyline points="2 17 12 22 22 17"/>
+                <polyline points="2 12 12 17 22 12"/>
+              </svg>
+              <div>
+                <div style={{ fontSize: '0.875rem', fontWeight: 700 }}>Specializing in</div>
+                <div style={{ fontSize: '0.8rem', color: 'var(--ink-3)' }}>Fitness Tech · SaaS · Small Business · Government</div>
+              </div>
+            </div>
+          </div>
+
           </div>
         </Container>
       </section>

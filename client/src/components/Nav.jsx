@@ -18,7 +18,7 @@ export default function Nav() {
     { id: 'home',     label: L.home     },
     { id: 'projects', label: L.projects },
     { id: 'about',    label: L.about    },
-    { id: 'services', label: L.services },
+  //  { id: 'services', label: L.services },
     { id: 'contact',  label: L.contact  },
   ];
 
@@ -89,7 +89,7 @@ export default function Nav() {
               style={{ height: 36, padding: '0 12px', borderRadius: 18, background: 'var(--bg-inset)', border: '1px solid var(--border)', color: 'var(--ink-2)', display: 'flex', alignItems: 'center', gap: 5, cursor: 'pointer', transition: 'all .2s', fontSize: '0.72rem', fontWeight: 700, letterSpacing: '.05em' }}
               onMouseEnter={e => { e.currentTarget.style.background = 'var(--bg-muted)'; e.currentTarget.style.color = 'var(--ink)'; }}
               onMouseLeave={e => { e.currentTarget.style.background = 'var(--bg-inset)'; e.currentTarget.style.color = 'var(--ink-2)'; }}>
-              🌐 {lang === 'en' ? 'ES' : 'EN'}
+             {lang === 'en' ? 'ESPAÑOL' : 'ENGLISH'}
             </button>
             <Btn variant="accent" size="sm" className="nav-cta-btn" onClick={() => setPage('contact')}>{L.talk}</Btn>
             <button
