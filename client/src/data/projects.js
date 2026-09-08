@@ -34,5 +34,28 @@ export const PROJECTS = [
   tools: [ 'HTML', 'CSS'],
   impact: 'Clear menu presentation · Mobile-friendly design · Seasonal pricing flexibility',
   featured: false,
+  githubUrl: 'https://github.com/ClauYA/mainlobster',
+  liveUrl: 'https://clauya.github.io/mainlobster/'
+},
+{
+  id: 'lineup',
+  num: '03',
+  badge: 'Web Design',
+  image: '/line-up-homescreen.png', 
+  tag: 'SaaS · Small Business',
+  tagStyle: 'accent',
+  year: '2026',
+  cat: 'SaaS · Web Design · Responsive Design',
+  title: 'Lineup — The waitlist that texts your customers',
+  summary: 'A text-based waitlist system for barbershops, counters, and walk-in businesses. No apps, no hardware — just text.',
+  problem: 'Shops struggle with crowded waiting areas and inefficient queue management. Customers hate waiting without knowing their spot, and businesses lose revenue from no-shows and walk-outs.',
+  role: 'Web Developer',
+  duration: 'Still working on it',
+  tools: ['HTML', 'CSS', 'JavaScript'],
+  impact: 'Eliminates crowded benches · Reduces no-shows · Works on any phone',
+  featured: false,
+  githubUrl: 'https://github.com/ClauYA/Line-Up',
+  liveUrl: ' https://clauya.github.io/Line-Up/'
 }
+
 ];

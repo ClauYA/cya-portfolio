@@ -195,7 +195,7 @@ export default function MiningCaseStudy() {
             ← Back to projects
           </button>
 
-          <div className="anim-fadeup"><Eyebrow>Case study · 02</Eyebrow></div>
+          <div className="anim-fadeup"><Eyebrow>Case study · 01</Eyebrow></div>
           <h1 className="anim-fadeup d100" style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.6rem,4vw,2.8rem)', fontWeight: 400, lineHeight: 1.05, letterSpacing: '-.03em', marginTop: 16 }}>
             Digital Transformation in Oruro's Mining Sector — <em style={{ color: 'var(--accent)', fontStyle: 'normal' }}>AMSIX &amp; Department of Mining</em>
           </h1>
