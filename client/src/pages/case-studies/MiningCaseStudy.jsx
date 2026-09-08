@@ -7,7 +7,8 @@ import Btn       from '../../components/ui/Btn';
 import Tag       from '../../components/ui/Tag';
 import Reveal    from '../../components/ui/Reveal';
 import Container from '../../components/ui/Container';
-import Footer    from '../../components/Footer';
+
+
 
 // 🔗 PROTOTIPOS INTERACTIVOS — un pedacito por cada parte del proyecto
 // Para cada pieza pega su link de prototipo de Figma en `url`.
@@ -35,16 +36,16 @@ const DS_COLORS = [
 
 // Convierte un link normal de prototipo/diseño de Figma al formato de embed recomendado
 // (embed.figma.com), que carga mejor y no parpadea. Acepta links que ya vengan en ese formato.
-//function figmaEmbedSrc(url) {
-//  let u = url.replace('://www.figma.com', '://embed.figma.com').replace('://figma.com', '://embed.figma.com');
-//  if (!/embed-host=/.test(u)) u += (u.includes('?') ? '&' : '?') + 'embed-host=share';
+function figmaEmbedSrc(url) {
+  let u = url.replace('://www.figma.com', '://embed.figma.com').replace('://figma.com', '://embed.figma.com');
+  if (!/embed-host=/.test(u)) u += (u.includes('?') ? '&' : '?') + 'embed-host=share';
   // Oculta el panel lateral "Flows" que Figma muestra al cargar el prototipo.
-//  u = u.replace(/([?&])show-proto-sidebar=1/g, '$1show-proto-sidebar=0');
-//  if (!/show-proto-sidebar=/.test(u)) u += '&show-proto-sidebar=0';
+  u = u.replace(/([?&])show-proto-sidebar=1/g, '$1show-proto-sidebar=0');
+  if (!/show-proto-sidebar=/.test(u)) u += '&show-proto-sidebar=0';
   // Oculta la barra superior de Figma ("Dashboard Oruro II · Edited…") para un embed más limpio.
-//  if (!/hide-ui=/.test(u)) u += '&hide-ui=1';
-//  return u;
-//}
+  if (!/hide-ui=/.test(u)) u += '&hide-ui=1';
+  return u;
+}
 
 // Sección del caso. Definida a NIVEL DE MÓDULO (no dentro del componente) a propósito:
 // así React no la re-monta en cada render y el iframe del prototipo no se recarga.
@@ -683,7 +684,7 @@ export default function MiningCaseStudy() {
           </Reveal>
         </Container>
       </section>
-      <Footer />
+     
     </div>
   );
 }

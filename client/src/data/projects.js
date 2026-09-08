@@ -31,7 +31,7 @@ export const PROJECTS = [
   problem: 'The restaurant needed a digital presence that captured their authentic, no-frills character while making it easy for visitors to find the menu, location, and hours — especially during the busy tourist season.',
   role: 'Web Developer',
   duration: '3 weeks',
-  tools: [ 'React', 'HTML/CSS'],
+  tools: [ 'HTML', 'CSS'],
   impact: 'Clear menu presentation · Mobile-friendly design · Seasonal pricing flexibility',
   featured: false,
 }
