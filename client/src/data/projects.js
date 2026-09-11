@@ -37,9 +37,28 @@ export const PROJECTS = [
   githubUrl: 'https://github.com/ClauYA/mainlobster',
   liveUrl: 'https://clauya.github.io/mainlobster/'
 },
-{
-  id: 'lineup',
+ {
+  id: 'JWLI',
   num: '03',
+  badge: 'Web Design',
+  image: '/jwli-homescreen.png', 
+  tag: 'Nonprofit · Responsive Design',
+  tagStyle: 'accent',
+  year: '2026',
+  cat: 'Web Design · Frontend Development',
+  title: 'JWLI — Empowering Women Leaders Through Digital Presence',
+  summary: 'A responsive website for the Japanese Women\'s Leadership Institute, featuring email subscription functionality and mobile-first navigation.',
+  problem: 'JWLI needed a modern, accessible web presence to reach potential fellows and donors while maintaining their mission-focused branding. The site required seamless mobile experience for international users and easy email subscription for application updates.',
+  role: 'Frontend Developer',
+  duration: '2 weeks',
+  tools: ['HTML5', 'CSS', 'JavaScript', 'Responsive Design'],
+  impact: 'Mobile-responsive design · Accessible navigation',
+  featured: false,
+  liveUrl: 'https://clauya.github.io/Jwli-Website/' 
+ },
+ {
+  id: 'lineup',
+  num: '04',
   badge: 'Web Design',
   image: '/line-up-homescreen.png', 
   tag: 'SaaS · Small Business',
@@ -54,7 +73,6 @@ export const PROJECTS = [
   tools: ['HTML', 'CSS', 'JavaScript'],
   impact: 'Eliminates crowded benches · Reduces no-shows · Works on any phone',
   featured: false,
-  githubUrl: 'https://github.com/ClauYA/Line-Up',
   liveUrl: ' https://clauya.github.io/Line-Up/'
 }
 

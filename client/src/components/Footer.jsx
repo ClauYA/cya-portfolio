@@ -6,7 +6,7 @@ export default function Footer() {
   const es = lang === 'es';
   const labels = es
     ? { home: 'Inicio', projects: 'Proyectos', about: 'Sobre mí', services: 'Servicios', contact: 'Contacto' }
-    : { home: 'Home', projects: 'Projects', about: 'About', services: 'Services', contact: 'Contact' };
+    : { home: 'Home', projects: 'Projects', about: 'About', contact: 'Contact' };
   return (
     <footer style={{ borderTop: '1px solid var(--border)', background: 'var(--bg-card)', padding: '28px 0' }}>
       <div style={{ width: '100%', maxWidth: 1200, margin: '0 auto', padding: '0 clamp(24px,5vw,64px)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
