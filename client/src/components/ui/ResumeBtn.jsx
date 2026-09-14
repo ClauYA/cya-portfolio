@@ -6,7 +6,7 @@ export default function ResumeBtn({ size = 'md', style: extra }) {
   const sizes = { sm: { fontSize: '0.78rem', padding: '8px 18px' }, md: { fontSize: '0.875rem', padding: '12px 26px' }, lg: { fontSize: '1rem', padding: '15px 34px' } };
   return (
     <a
-      href="/Claudia-Bittner-PD.pdf"
+      href="/Claudia Bittner-SoftwareEngineer.pdf"
       download="Claudia-Bittner.pdf"
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
