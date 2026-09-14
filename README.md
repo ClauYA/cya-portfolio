@@ -9,11 +9,11 @@ About
 This portfolio bridges two disciplines: UX design and front-end development (Software Engineer). Every project here reflects both sides: from research and information architecture to production-ready code. It's built to show recruiters and clients that I can take a product from the first wireframe to a live, shippable interface.
 
 Features
-🎨 Custom-designed UX case studies (research, wireframes, design systems, and final UI)
-💻 Fully responsive, hand-coded front-end 
-⚡ Built with React for fast, component-driven development
-📱 Optimized for performance and accessibility
-🧩 Reusable component architecture for easy content updates
+- Custom-designed UX case studies (research, wireframes, design systems, and final UI)
+- Fully responsive, hand-coded front-end 
+- Built with React for fast, component-driven development
+- Optimized for performance and accessibility
+- Reusable component architecture for easy content updates
 Tech Stack
 Framework: React
 Styling: CSS Modules / Tailwind 
