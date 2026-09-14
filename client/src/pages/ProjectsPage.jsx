@@ -45,7 +45,7 @@ export default function ProjectsPage() {
                 Selected <em style={{ color: 'var(--accent)', fontStyle: 'normal' }}>work.</em>
               </h1>
               <p className="anim-fadeup d200" style={{ fontSize: '1.05rem', color: 'var(--ink-2)', marginTop: 20, lineHeight: 1.7, maxWidth: 500 }}>
-                Projects spanning fitness technology, SaaS, wellness, and government — each a story from problem to elegant solution.
+                Experience spanning fitness technology, SaaS, wellness, and government: Each a story from problem to elegant solution.
               </p>
             </div>
          <div className="anim-fadeup d300" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>

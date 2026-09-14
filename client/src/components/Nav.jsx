@@ -11,12 +11,12 @@ export default function Nav() {
   const stuck = scrollY > 20;
 
   const L = lang === 'es'
-    ? { home: 'Inicio', projects: 'Proyectos', about: 'Sobre mí', services: 'Servicios', contact: 'Contacto', talk: 'Hablemos →' }
-    : { home: 'Home', projects: 'Projects', about: 'About', services: 'Services', contact: 'Contact', talk: "Let's Talk →" };
+    ? { home: 'Inicio', experience: 'Experiencia', about: 'Sobre mí', services: 'Servicios', contact: 'Contacto', talk: 'Hablemos →' }
+    : { home: 'Home', experience: 'Experience', about: 'About', services: 'Services', contact: 'Contact', talk: "Let's Talk →" };
 
   const links = [
     { id: 'home',     label: L.home     },
-    { id: 'projects', label: L.projects },
+    { id: 'projects', label: L.experience },
     { id: 'about',    label: L.about    },
   //  { id: 'services', label: L.services },
     { id: 'contact',  label: L.contact  },

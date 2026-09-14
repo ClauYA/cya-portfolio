@@ -42,7 +42,7 @@ export default function HomePage() {
     <div style={{ paddingTop: 68 }}>
 
       {/* ── HERO ── */}
-      <section style={{ minHeight: 'calc(100vh - 68px)', display: 'flex', alignItems: 'center', padding: 'clamp(64px,8vw,120px) 0', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ display: 'flex', alignItems: 'center', padding: 'clamp(32px,5vw,80px) 0', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none', overflow: 'hidden' }}>
           {[700, 1060, 460].map((size, i) => (
             <div key={i} style={{ position: 'absolute', width: size, height: size, borderRadius: '50%', border: '1px solid var(--border)', right: ['-200px','-420px','80px'][i], top: '50%', marginTop: -size/2, opacity: 0, animation: `ring-appear 14s cubic-bezier(0,0,0.2,1) ${[.3,.6,.9][i]}s forwards` }} />
