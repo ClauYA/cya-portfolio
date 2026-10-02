@@ -104,7 +104,7 @@ export default function HomePage() {
       </Section>
 
       {/* CONTACT CTA */}
-      <section style={{ position: 'relative', overflow: 'hidden', padding: 'clamp(80px,10vw,140px) 0' }}>
+      <section style={{ position: 'relative', overflow: 'hidden', padding: 'clamp(48px,6vw,96px) 0' }}>
         <div style={{ position: 'absolute', inset: 0, background: 'var(--bg-inset)', clipPath: 'polygon(0 7%, 100% 0%, 100% 93%, 0 100%)' }} />
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 4, background: 'linear-gradient(90deg, var(--accent), var(--sage))', opacity: 0.35 }} />
         <Container style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>

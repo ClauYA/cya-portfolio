@@ -74,6 +74,25 @@ export const PROJECTS = [
   impact: 'Eliminates crowded benches · Reduces no-shows · Works on any phone',
   featured: false,
   liveUrl: ' https://clauya.github.io/Line-Up/'
+},
+ {
+  id: 'nasa-weather',
+  num: '06',
+  badge: 'Web Development',
+  image: '/nasa-facility-weather.png',
+  tag: 'Data Visualization · API Integration',
+  tagStyle: 'accent',
+  year: '2026',
+  cat: 'JavaScript · API Integration · Responsive Design',
+  title: 'NASA Facility Weather Explorer — Current conditions across NASA locations',
+  summary: 'An interactive directory that lets users explore NASA facilities and view the current local weather at a selected location.',
+  problem: 'NASA facility details and real-time local weather are typically accessed through separate sources. Users must manually find a facility’s location and search for weather conditions elsewhere.',
+  role: 'Front-End Developer',
+  duration: 'Still working on it',
+  tools: ['HTML', 'CSS', 'JavaScript', 'NASA Facilities API', 'Google Weather API'],
+  impact: 'Connects NASA facility coordinates to live weather data · Makes 400+ locations easier to explore · Turns separate public datasets into one clear experience',
+  featured: false,
+  liveUrl: 'https://clauya.github.io/complex-nasa-weather/'
 }
 
 ];
