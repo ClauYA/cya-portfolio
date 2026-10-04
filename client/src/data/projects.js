@@ -77,7 +77,7 @@ export const PROJECTS = [
 },
  {
   id: 'nasa-weather',
-  num: '06',
+  num: '05',
   badge: 'Web Development',
   image: '/nasa-facility-weather.png',
   tag: 'Data Visualization · API Integration',

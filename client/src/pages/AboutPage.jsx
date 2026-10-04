@@ -42,39 +42,39 @@ export default function AboutPage() {
               gap: 64
             }}>
 
-              {/* Intro */}
-              <div>
-                <div className="anim-fadeup"><Eyebrow>{es ? 'Mi historia' : 'My story'}</Eyebrow></div>
-                <h1 className="anim-fadeup d100" style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.6rem,4vw,2.8rem)', fontWeight: 400, lineHeight: 1.05, letterSpacing: '-.03em', marginTop: 16 }}>
-                  {es
-                    ? <>Hablo ambos idiomas: <em style={{ color: 'var(--accent)', fontStyle: 'normal' }}>usuarios y código.</em></>
-                    : <>I speak both languages: <em style={{ color: 'var(--accent)', fontStyle: 'normal' }}>users and code.</em></>}
-                </h1>
-                <p className="anim-fadeup d200" style={{ fontSize: '1.05rem', color: 'var(--ink-2)', marginTop: 20, lineHeight: 1.72, maxWidth: 640 }}>
-                  {es
-                    ? 'Empecé en Ingeniería en Computación, así que siempre me he sentido tan cómoda en el código como en un archivo de Figma. El diseño de producto es donde ambos mundos se encuentran: investigo y diseño la experiencia, y luego la construyo en código cuando el proyecto lo pide. Eso significa que lo que diseño es realmente construible — porque más de una vez, soy yo quien lo construye.'
-                    : "I started in Computer Engineering, so I've always been as comfortable in a codebase as in a Figma file. Product design is where the two meet: I research and design the experience, then build it in code when the project calls for it. That means the things I design are actually buildable — because more than once, I'm the one who builds them."}
-                </p>
-                <p className="anim-fadeup d300" style={{ fontSize: '1rem', color: 'var(--ink-2)', marginTop: 16, lineHeight: 1.72 }}>
-                  {es
-                    ? 'Después de mudarme a Estados Unidos, exploré distintos caminos y empecé a cuestionarme si la tecnología seguía siendo mi lugar. Descubrir el diseño UX/UI lo cambió todo. Me permitió combinar mi base técnica con algo que siempre me había gustado: entender a las personas.'
-                    : 'After moving to the United States, I explored different paths and began questioning whether technology was still where I belonged. Discovering UX/UI Design changed that. It allowed me to combine my technical foundation with something I had always enjoyed: understanding people.'}
-                </p>
-                <p className="anim-fadeup d300" style={{ fontSize: '1rem', color: 'var(--ink-2)', marginTop: 16, lineHeight: 1.72 }}>
-                 {es
-                    ? 'Hoy diseño productos que no solo son funcionales y viables de construir, sino también significativos, intuitivos y centrados en las personas.'
-                    : 'Today, I design products that are not only functional and feasible to build, but also meaningful, intuitive, and human-centered.'}
-                </p>
-                 <p className="anim-fadeup d300" style={{ fontSize: '1rem', color: 'var(--ink-2)', marginTop: 16, lineHeight: 1.72 }}>
+           {/* Intro */}
+            <div>
+              <div className="anim-fadeup"><Eyebrow>{es ? 'Mi historia' : 'My story'}</Eyebrow></div>
+              <h1 className="anim-fadeup d100" style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.6rem,4vw,2.8rem)', fontWeight: 400, lineHeight: 1.05, letterSpacing: '-.03em', marginTop: 16 }}>
                 {es
-                    ? 'Cuando no estoy diseñando, probablemente me encuentres levantando pesas, experimentando en la cocina, ayudando a alguien a mejorar sus hábitos de fitness, o pasando tiempo con niños — que me recuerdan constantemente que la curiosidad es una de las herramientas de diseño más poderosas que tenemos.'
-                    : "When I'm not designing, you'll probably find me lifting weights, experimenting in the kitchen, helping someone improve their fitness habits, or spending time with kids — who constantly remind me that curiosity is one of the most powerful design tools we have."}
-                </p>
-                <div className="anim-fadeup d400" style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 28, alignItems: 'center' }}>
-                  <Btn variant="solid" onClick={() => setPage('contact')}>{es ? 'Trabaja conmigo →' : 'Work with me →'}</Btn>
-                  <ResumeBtn size="md" />
-                </div>
+                  ? <>Hablo ambos idiomas: <em style={{ color: 'var(--accent)', fontStyle: 'normal' }}>usuarios y código.</em></>
+                  : <>I speak both languages: <em style={{ color: 'var(--accent)', fontStyle: 'normal' }}>users and code.</em></>}
+              </h1>
+              <p className="anim-fadeup d200" style={{ fontSize: '1.05rem', color: 'var(--ink-2)', marginTop: 20, lineHeight: 1.72, maxWidth: 640 }}>
+                {es
+                  ? 'Mi trayectoria en tecnología comenzó en La Paz, Bolivia, en la Universidad Mayor de San Andrés, estudiando Ciencias de la Computación, y me llevó a iniciar mi carrera como desarrolladora Full-Stack.'
+                  : 'My Tech Journey began in La Paz, Bolivia at Universidad Mayor de San Andrés studying Computer Science, and led to my career starting as a Full-Stack developer.'}
+              </p>
+              <p className="anim-fadeup d300" style={{ fontSize: '1rem', color: 'var(--ink-2)', marginTop: 16, lineHeight: 1.72 }}>
+                {es
+                  ? 'Después de mudarme a Estados Unidos, exploré distintos caminos y empecé a cuestionarme si la tecnología seguía siendo mi lugar. Descubrir el diseño UX/UI lo cambió todo. Me permitió combinar mi base técnica con algo que siempre me había gustado: entender a las personas.'
+                  : 'After moving to the United States, I explored different paths and began questioning whether technology was still where I belonged. Discovering UX/UI Design changed that. It allowed me to combine my technical foundation with something I had always enjoyed: understanding people.'}
+              </p>
+              <p className="anim-fadeup d300" style={{ fontSize: '1rem', color: 'var(--ink-2)', marginTop: 16, lineHeight: 1.72 }}>
+              {es
+                  ? 'Hoy, investigo y diseño la experiencia, y luego la construyo en código. Diseño productos que no solo son funcionales y viables de construir, sino también significativos, intuitivos y, sobre todo, centrados en las personas.'
+                  : 'Today, I research and design the experience, then build it in code. I design products that are not only functional and feasible to build, but also meaningful, intuitive, and most importantly human-centered.'}
+              </p>
+              <p className="anim-fadeup d300" style={{ fontSize: '1rem', color: 'var(--ink-2)', marginTop: 16, lineHeight: 1.72 }}>
+              {es
+                  ? 'Cuando no estoy frente a mi computadora, probablemente me encuentres entrenando fuerza para competencias de powerbuilding, experimentando en la cocina, ayudando a amigos cercanos y familiares a mejorar sus hábitos de fitness, o pasando tiempo con niños. A través de mis pasatiempos, constantemente me recuerdan que la curiosidad es una de las herramientas más innovadoras que tenemos.'
+                  : "When I'm not at my computer, you'll find me strength training for powerbuilding meets, experimenting in the kitchen, helping my close friends and family improve their fitness habits, or spending time with kids. Through my hobbies, I am constantly reminded that curiosity is one of the most innovative tools we have."}
+              </p>
+              <div className="anim-fadeup d400" style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 28, alignItems: 'center' }}>
+                <Btn variant="solid" onClick={() => setPage('contact')}>{es ? 'Trabaja conmigo →' : 'Work with me →'}</Btn>
+                <ResumeBtn size="md" />
               </div>
+            </div>
 
               {/* Philosophy */}
               <Reveal>
