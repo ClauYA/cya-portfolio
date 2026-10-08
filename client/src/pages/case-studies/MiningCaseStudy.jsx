@@ -256,7 +256,7 @@ export default function MiningCaseStudy() {
             ['15–25%','Data entry error rate from manual processes'],
             ['60%',   'Productive labor hours lost to repetitive tasks'],
             ['3 types','Mining operators: state, private, cooperative'],
-            ['$B',    'In royalties mismanaged annually due to poor transparency'],
+            ['BS.',    'In royalties mismanaged annually due to poor transparency'],
           ].map(([n, l]) => (
             <div key={l}
               style={{ textAlign: 'center', padding: '24px 16px', borderRadius: 18, background: 'var(--bg-card)', border: '1px solid var(--border)', transition: 'all .2s' }}
@@ -384,8 +384,8 @@ export default function MiningCaseStudy() {
           {/* Persona cards */}
           <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 16 }}>
             {[
-              ['/persona-card-eduardo.png', 'Persona — Eduardo Duarte'],
-              ['/persona-card-maria.png',   'Persona — María Fernanda'],
+              ['/persona-eduardo.png', 'Persona — Eduardo Duarte'],
+              ['/persona-maria.png',   'Persona — María Fernanda'],
             ].map(([src, alt]) => (
               <div key={alt} style={{ borderRadius: 14, overflow: 'hidden', border: '1px solid var(--border)', background: 'var(--bg-card)', cursor: 'zoom-in' }}
                 onClick={() => setLightbox({ src, alt })}>
